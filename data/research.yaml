@@ -1,0 +1,33 @@
+papers:
+  - title: "Mahatma 1"
+    summary: "Avenida Francisco Laborde 165"
+    image: "/images/m1.jpg"
+    links:
+      - label: "Fotos"
+        url: "#"
+    gallery:
+      - "images/m1.jpg"
+      - "images/m1_sala.jpeg"
+      - "images/m1_jardin.jpg"
+
+  - title: "Mahatma 2"
+    summary: "Pintos 411"
+    image: "/images/m2.jpg"
+    links:
+      - label: "Fotos"
+        url: "#"
+    gallery:
+      - "images/m2.jpg"
+      - "images/m2_sala.jpg"
+      - "images/m2_jardin.jpg"
+
+  - title: "Mahatma 3"
+    summary: "Alvear 125"
+    image: "images/m3.jpg"
+    links:
+      - label: "Fotos"
+        url: "#"
+    gallery:
+      - "images/m3.jpg"
+      - "images/m3_sala.png"
+      - "images/m3_jardin.jpg"
