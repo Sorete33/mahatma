@@ -1,0 +1,143 @@
+{{- $items := .items -}}
+{{- $limit := or .limit (len $items) -}}
+
+<div class="collapsible" data-expandable data-limit="{{ $limit }}">
+  <div class="expandable-grid" data-expandable-content>
+    {{ range $items }}
+      <article class="expandable-card">
+        {{ $img := strings.TrimPrefix "/" .image }}
+        <div class="card-image">
+          <img src="{{ $img | relURL }}" alt="{{ .title }} thumbnail" loading="lazy">
+        </div>
+        <div class="card-content">
+          {{ with .meta }}<p class="card-meta">{{ . }}</p>{{ end }}
+          <h3>{{ .title }}</h3>
+          {{ with .summary }}<p class="card-summary">{{ . }}</p>{{ end }}
+          {{ if .map }}
+           <div class="card-map" style="margin: 10px 0; width: 100%; box-sizing: border-box;">
+             {{ .map | safeHTML }}
+          </div>
+          {{ end }}
+          {{ $coLabel := or .coauthors_label .coauthorsLabel "Co-authors" }}
+          {{ with .coauthors }}
+            <p class="card-coauthors">
+              <span class="label">{{ $coLabel }}:</span>
+              <span class="coauthor-list">
+                {{ range $index, $co := . }}
+                  {{ if gt $index 0 }}, {{ end }}
+                  {{ $name := $co.name | default $co.title | default $co.label }}
+                  {{ $link := or $co.url $co.link }}
+                  {{ if $link }}
+                    {{ if and (hasPrefix $link "/") (not (hasPrefix $link "//")) }}
+                      <a class="coauthor-link" href="{{ $link | relURL }}">{{ $name }}</a>
+                    {{ else }}
+                      <a class="coauthor-link" href="{{ $link | safeURL }}" target="_blank" rel="noopener">{{ $name }}</a>
+                    {{ end }}
+                  {{ else }}
+                    <span class="coauthor-name">{{ $name }}</span>
+                  {{ end }}
+                {{ end }}
+              </span>
+            </p>
+          {{ end }}
+          
+          {{ with .tags }}
+            <div class="tag-row">
+              {{ range . }}
+                <span class="tag">{{ . }}</span>
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+
+        <div class="card-footer">
+          {{ $item := . }}
+          
+          {{ range .links }}
+            {{ $dest := or .link .url }}
+            
+            {{ if eq .label "Fotos" }}
+              <a class="chip-link" 
+                 href="#" 
+                 style="cursor: pointer;"
+                 data-modal-trigger="modal-{{ $item.title | urlize }}">
+                {{ .label }}
+              </a>
+
+              <dialog id="modal-{{ $item.title | urlize }}" class="native-modal" style="border:none; border-radius:8px; padding:20px; max-width:500px; width:90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3); background: var(--color-surface, #fff); color: var(--color-text, #000);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #ccc; padding-bottom:5px;">
+                  <h4 style="margin:0;">{{ $item.title }}</h4>
+                  <button type="button" onclick="this.closest('dialog').close()" style="background:none; border:none; font-size:20px; cursor:pointer; color:inherit;">&times;</button>
+                </div>
+                
+                <div class="modal-carousel" style="position:relative; text-align:center;">
+                  {{ if $item.gallery }}
+                    {{ range $index, $imgUrl := $item.gallery }}
+                      <div class="slide-{{ $item.title | urlize }}" data-index="{{ $index }}" style="{{ if gt $index 0 }}display:none;{{ end }}">
+                        <img src="{{ $imgUrl | relURL }}" style="max-width:100%; max-height:350px; object-fit:contain; border-radius:4px;">
+                        <p style="font-size:12px; margin-top:5px; opacity:0.7;">{{ add $index 1 }} / {{ len $item.gallery }}</p>
+                      </div>
+                    {{ end }}
+                    
+                    {{ if gt (len $item.gallery) 1 }}
+                      <div style="display:flex; justify-content: space-between; margin-top:10px;">
+                        <button type="button" onclick="changeSlide('{{ $item.title | urlize }}', -1)" style="padding:5px 15px; cursor:pointer; background:var(--color-surface-brighter, #eee); border:1px solid #ccc; border-radius:4px; color:inherit;">&larr; Ant</button>
+                        <button type="button" onclick="changeSlide('{{ $item.title | urlize }}', 1)" style="padding:5px 15px; cursor:pointer; background:var(--color-surface-brighter, #eee); border:1px solid #ccc; border-radius:4px; color:inherit;">Sig &rarr;</button>
+                      </div>
+                    {{ end }}
+                  {{ else }}
+                    <div>
+                      <img src="{{ $item.image | relURL }}" style="max-width:100%; max-height:350px; object-fit:contain; border-radius:4px;">
+                    </div>
+                  {{ end }}
+                </div>
+              </dialog>
+
+            {{ else }}
+              {{ if and (hasPrefix $dest "/") (not (hasPrefix $dest "//")) }}
+                <a class="chip-link" href="{{ $dest | relURL }}">{{ .label }}</a>
+              {{ else }}
+                <a class="chip-link" href="{{ $dest | safeURL }}" target="_blank" rel="noopener">{{ .label }}</a>
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        </div>
+      </article>
+    {{ end }}
+  </div>
+
+  {{ if gt (len $items) $limit }}
+    <button class="ghost-toggle" type="button" data-expand-toggle>Show More ↓</button>
+  {{ end }}
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+  const trigger = e.target.closest('[data-modal-trigger]');
+  if (trigger) {
+    e.preventDefault();
+    const id = trigger.getAttribute('data-modal-trigger');
+    const modal = document.getElementById(id);
+    if (modal) modal.showModal();
+  }
+});
+
+function changeSlide(id, direction) {
+  const slides = document.querySelectorAll('.slide-' + id);
+  let activeIndex = 0;
+  
+  slides.forEach((slide, idx) => {
+    if (slide.style.display !== 'none') {
+      activeIndex = idx;
+    }
+  });
+  
+  slides[activeIndex].style.display = 'none';
+  
+  let newIndex = activeIndex + direction;
+  if (newIndex >= slides.length) newIndex = 0;
+  if (newIndex < 0) newIndex = slides.length - 1;
+  
+  slides[newIndex].style.display = 'block';
+}
+</script>

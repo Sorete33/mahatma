@@ -1,29 +1,23 @@
 items:
-
-  - 
-    detail: "Remix"
-    badges: ["DJ", "Creador de contenido de dj"]
-    profile_image: "images/ren.jpg"
-
-  -
-    detail: "Patri"
-    badges: ["Tesorera", "Paper"]
-    profile_image: "images/patri.jpg"
-
   - date: "F"
     detail: "Fabián Girotti"
     badges: ["Medico General",]
     profile_image: "images/fabian.jpg"
 
-  - date: "Nutri"
-    detail: "Nutricionista"
+  - date: ""
+    detail: "Ana Balbo"
     badges: ["Nutricionista",]
     profile_image: ""
 
-  - date: ""
-    detail: "Ana Balbo"
-    badges: ["Gimnasia",]
-    profile_image: ""
+  - 
+    detail: "Remix"
+    badges: ["DJ", "MAejo comida", "encargao compras"]
+    profile_image: "images/ren.jpg"
+
+  -
+    detail: "Patri"
+    badges: ["Administración"]
+    profile_image: "images/patri.jpg"
 
   - date: ""
     detail: "Jessica Yankovich"

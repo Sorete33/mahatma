@@ -1,0 +1,17 @@
+name: "Dr. Celadon"
+title: "Computational Archaeologist & Data Scientist"
+summary: >
+  I explore the intersection of ==ancien== history and ==modern== algorithms. My work applies 
+  ~~computer vision~~ and ~~deep learnin~~g to reconstruct fragmented pottery, making the 
+  patterns of the past legible to the machines of the future.
+affiliation: "Postdoc Fellow at the Institute of Digital Heritage<br>Celadon Lab for Historical Data"
+profile_image: "images/profile.png"
+highlights:
+  - "Computer Vision for Artifact Reconstruction"
+  - "Generative AI in Museum Curation"
+  - "Digital Preservation & Ethics"
+links:
+  - label: "Github"
+    url: "https://github.com/Yajie-Xu/hugo-celadon"
+  - label: "Google Scholar"
+    url: "#"

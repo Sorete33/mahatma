@@ -1,0 +1,10 @@
+name: "Hugo Guasco"
+title: "Director General"
+profile_image: "images/hugo.jpg"
+highlights:
+  - "Enfermero"
+  - "Educador yoguístico"
+  - "Algo más"
+links:
+  - label: "Facebook"
+    url: "#"

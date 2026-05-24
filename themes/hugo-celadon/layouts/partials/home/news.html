@@ -1,0 +1,42 @@
+{{ $section := .Section }}
+{{ $config := .Config }}
+{{ $title := default (humanize $section) (cond (and $config (isset $config "title")) (index $config "title") nil) }}
+{{ $limit := default 5 (cond (and $config (isset $config "limit")) (index $config "limit") nil) }}
+{{ $items := .Data }}
+{{ if not $items }}
+  {{ $items = slice }}
+{{ end }}
+<section id="{{ .Section }}" class="section-block">
+  
+  <div class="news-list">
+    {{ range .Data }}
+    <div class="news-item">
+      
+      <!-- LEFT COLUMN: Profile Image & Date/Name -->
+      <div class="news-aside">
+        {{ if .profile_image }}
+          <img src="{{ .profile_image | relURL }}" alt="{{ .date }}" class="news-profile-img" loading="lazy">
+        {{ else }}
+          <!-- Fallback if a staff member doesn't have an image -->
+          <div class="news-profile-placeholder"></div>
+        {{ end }}
+        <span class="news-date">{{ .date }}</span>
+      </div>
+
+      <!-- RIGHT COLUMN: Details & Badges -->
+      <div class="news-detail">
+        <p>{{ .detail | markdownify }}</p>
+        
+        {{ if .badges }}
+        <div class="news-badges">
+          {{ range .badges }}
+            <span class="news-badge">{{ . }}</span>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+
+    </div>
+    {{ end }}
+  </div>
+</section>
