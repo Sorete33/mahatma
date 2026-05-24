@@ -1,15 +1,18 @@
 themesDir = "themes"
 baseURL = 'https://voluble-centaur-8d5080.netlify.app/'
 languageCode = 'es-AR'
-title = 'Geriátricos Mahatma'
+title = 'Centros Geriátricos Mahatma'
 theme = "hugo-celadon"
 enableRobotsTXT = true
 
+
 [params]
-  description = 'Centros geriátricos mahatma.'
+  description = 'Centros Geriátricos Mahatma.'
   email = 'geriatricosmahatma@gmail.com'
   location = 'Chivilcoy, Buenos Aires, Argentina'
   avatar = "static/portrait.png"
+  automaticMenu = false
+  disableHomeLink = true
 
 [params.homepage]
   sections = ["hero", "research", "director", "news", "contacto"]
@@ -33,12 +36,12 @@ enableRobotsTXT = true
     enable = true
     layout = "staff"
     title = ""
+    showInMenu = false
   
   [params.homepage.contacto]
     enable = true
     layout = "contacto"
     title = "Contacto"
-
 
 [markup]
   [markup.goldmark]
@@ -78,6 +81,7 @@ enableRobotsTXT = true
 # CONFIGURACIÓN DEL MENÚ DE NAVEGACIÓN (HEADER)
 # Mantiene tus secciones intactas pero te da los links correctos
 # ---------------------------------------------------------
+
 
 [[menus.main]]
   name = "Nosotros"

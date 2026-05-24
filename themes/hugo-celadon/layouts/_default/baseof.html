@@ -1,4 +1,30 @@
 <!DOCTYPE html>
+<style>
+  @media (max-width: 768px) {
+    /* Homogeneizar márgenes para alinear menú y contenido */
+    .page-shell, .main-container, .morandi-nav {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      max-width: 100% !important;
+    }
+
+    /* Alinear barra y títulos */
+    .section-heading {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      margin-left: 0 !important;
+      gap: 15px !important;
+    }
+
+    /* Asegurar alineación izquierda del título */
+    h2, .section-title {
+      text-align: left !important;
+      margin-left: 0 !important;
+    }
+  }
+</style>
 <html lang="{{ site.Language.LanguageCode | default `en` }}">
   <head>
     {{ partial "head.html" . }}
@@ -11,7 +37,6 @@
           <a href="{{ site.Home.Permalink }}">{{ site.Title }}</a>
         </div>
         <div class="nav-links">
-          <a href="{{ site.Home.Permalink }}">Home</a>
           {{ range $section := site.Params.homepage.sections }}
             {{ $sectionStr := printf "%v" $section }}
             {{ $config := index site.Params.homepage $sectionStr }}

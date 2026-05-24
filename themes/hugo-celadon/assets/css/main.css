@@ -1535,3 +1535,16 @@ body[data-theme="dark"] .chroma .mf {
 .hero-container-wrapper .hero {
   margin-top: 0; 
 }
+
+@media (max-width: 768px) {
+  .main-container, section {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  
+  /* Alinea los títulos a la izquierda pero con margen adecuado */
+  h2, .section-title {
+    text-align: left;
+    margin-left: 0;
+  }
+}

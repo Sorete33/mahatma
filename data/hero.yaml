@@ -3,14 +3,14 @@ institucional:
   title: "Cuidado consciente, amor presente."
   profile_image: "images/portrait2.png"
   highlights:
-    - "Abierto todo el día, todos los días"
-    - "Habitaciones individuales y compartidas"
-    - "Médico y nutricionista 24hrs"
+    - "Más de 15 años de experiencia"
+    - "Medico 24 Hrs"
+    - "Habitaciónes individuales y compartidas"
   links:
     - label: "Instagram"
       url: "https://www.instagram.com/geriatricosmahatma/"
-    - label: "Google"
-      url: "#"
+    - label: "Facebook"
+      url: "https://www.facebook.com/hugo.guasco/"
 
 director:
   name: "Director General"

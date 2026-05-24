@@ -1,2 +1,47 @@
 <h1>{{ site.Title }}</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+
+<nav class="nav-links">
+  <ul>
+    {{ range site.Menus.main }}
+      <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+    {{ end }}
+  </ul>
+</nav>
+
+<style>
+  @media (max-width: 768px) {
+    /* 1. Definimos un margen izquierdo uniforme para todo el sitio */
+    .page-shell, .morandi-nav, .main-container {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+
+    /* 2. Alineamos el logo y el menú al mismo margen izquierdo que definimos arriba */
+    .morandi-nav {
+      align-items: flex-start !important; /* Alineamos a la izquierda */
+      justify-content: flex-start !important;
+    }
+
+    .brand {
+      margin-left: 0 !important;
+      padding-left: 0 !important;
+    }
+
+    /* 3. Limpiamos la cabecera de sección para que no tenga márgenes negativos */
+    .section-heading {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      margin-left: 0 !important; /* Quitamos el negativo */
+      padding-left: 0 !important; /* Empezamos desde cero */
+      gap: 10px !important;
+    }
+    
+    /* 4. Aseguramos que el H2 no tenga margen extra */
+    h2, .section-title {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+</style>

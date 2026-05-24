@@ -1,5 +1,5 @@
 items:
-  - date: "F"
+  - date: ""
     detail: "Fabián Girotti"
     badges: ["Medico General",]
     profile_image: "images/fabian.jpg"
@@ -7,17 +7,22 @@ items:
   - date: ""
     detail: "Ana Balbo"
     badges: ["Nutricionista",]
-    profile_image: ""
+    profile_image: "images/ana.webp"
 
   - 
     detail: "Remix"
-    badges: ["DJ", "MAejo comida", "encargao compras"]
+    badges: ["DJ"]
     profile_image: "images/ren.jpg"
 
   -
     detail: "Patri"
     badges: ["Administración"]
     profile_image: "images/patri.jpg"
+
+  - date: ""
+    detail: "Héctor Gomez"
+    badges: ["Mantenimiento",]
+    profile_image: ""
 
   - date: ""
     detail: "Jessica Yankovich"
@@ -32,9 +37,4 @@ items:
   - date: ""
     detail: "Cantante"
     badges: ["Cantante",]
-    profile_image: ""
-
-  - date: ""
-    detail: ""
-    badges: ["",]
     profile_image: ""

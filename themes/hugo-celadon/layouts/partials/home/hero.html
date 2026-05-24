@@ -45,4 +45,24 @@
   .section-heading {
     margin-top: 3rem !important; /* Fuerza el mismo margen para todos */
   }
+
+  /* Busca el elemento del menú que contiene "home" y lo oculta */
+  .nav-item a[href="/"], 
+  .nav-item a[href="/#"],
+  .navbar-nav a:first-child {
+    display: none !important;
+  }
+
+  @media (max-width: 768px) {
+  .main-container, section {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  
+  /* Alinea los títulos a la izquierda pero con margen adecuado */
+  h2, .section-title {
+    text-align: left;
+    margin-left: 0;
+  }
+}
 </style>
