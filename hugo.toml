@@ -1,8 +1,8 @@
 themesDir = "themes"
-baseURL = 'https://github.com/Sorete33/mahatma'
+baseURL = 'https://voluble-centaur-8d5080.netlify.app/'
 languageCode = 'es-AR'
 title = 'Geriátricos Mahatma'
-theme = 'hugo-celadon'
+theme = "hugo-celadon"
 enableRobotsTXT = true
 
 [params]
