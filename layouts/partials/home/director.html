@@ -16,12 +16,19 @@
       {{ with .name }}<h1>{{ . }}</h1>{{ end }}
 
       {{ if .highlights }}
-        <p class="highlights-title">Destacados</p>
+        <p class="highlights-title">Experiencia</p>
         <ul class="highlight-list">
           {{ range .highlights }}
             <li>{{ . }}</li>
           {{ end }}
         </ul>
+      {{ if .links }}
+        <div class="hero-links">
+          {{ range .links }}
+            <a href="{{ .url | default "#" }}" class="chip-link" target="_blank" rel="noopener">{{ .label }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
       {{ end }}
     </div>
   </div>

@@ -1,18 +1,10 @@
-{{- /*
-Renders a menu for the given menu ID.
-
-@context {page} page The current page.
-@context {string} menuID The menu ID.
-
-@example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-*/}}
-
 {{- $page := .page }}
 {{- $menuID := .menuID }}
 
 {{- with index site.Menus $menuID }}
-  <nav>
-    <ul>
+  <nav class="nav-container">
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-menu">
       {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
     </ul>
   </nav>
@@ -21,28 +13,26 @@ Renders a menu for the given menu ID.
 {{- define "_partials/inline/menu/walk.html" }}
   {{- $page := .page }}
   {{- range .menuEntries }}
-  {{- if eq .Name "Home" }}{{ continue }}{{ end }}
-  {{- if eq .Name "Inicio" }}{{ continue }}{{ end }}
+    {{- /* Skip Home/Inicio */}}
+    {{- if or (eq .Name "Home") (eq .Name "Inicio") }}{{ continue }}{{ end }}
+
+    {{- /* RE-DEFINE ATTRS HERE so they are available */}}
     {{- $attrs := dict "href" .URL }}
     {{- if $page.IsMenuCurrent .Menu . }}
       {{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") }}
     {{- else if $page.HasMenuCurrent .Menu .}}
       {{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
     {{- end }}
+
     {{- $name := .Name }}
-    {{- with .Identifier }}
-      {{- with T . }}
-        {{- $name = . }}
-      {{- end }}
-    {{- end }}
+    {{- with .Identifier }}{{ with T . }}{{ $name = . }}{{ end }}{{ end }}
+
     <li>
-      <a
-        {{- range $k, $v := $attrs }}
-          {{- with $v }}
-            {{- printf " %s=%q" $k $v | safeHTMLAttr }}
-          {{- end }}
-        {{- end -}}
-      >{{ $name }}</a>
+      <a href="{{ .URL }}" 
+   {{ if $page.IsMenuCurrent .Menu . }}class="active" aria-current="page"{{ end }} 
+   {{ if $page.HasMenuCurrent .Menu . }}class="ancestor" aria-current="true"{{ end }}>
+   {{ $name }}
+</a>
       {{- with .Children }}
         <ul>
           {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}

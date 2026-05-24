@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <style>
+  /* 1. Mobile defaults */
+  .menu-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--color-text); }
+  
   @media (max-width: 768px) {
-    /* Homogeneizar márgenes para alinear menú y contenido */
-    .page-shell, .main-container, .morandi-nav {
-      padding-left: 20px !important;
-      padding-right: 20px !important;
-      max-width: 100% !important;
-    }
+    .page-shell, .main-container, .morandi-nav { padding-left: 20px !important; padding-right: 20px !important; max-width: 100% !important; }
+    .section-heading { display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important; margin-left: 0 !important; gap: 15px !important; }
+    h2, .section-title { text-align: left !important; margin-left: 0 !important; }
+    .menu-toggle { display: block; }
+    .nav-links { display: none; position: absolute; top: 80px; left: 20px; right: 20px; background: var(--color-surface); flex-direction: column; padding: 20px; border-radius: 20px; box-shadow: var(--shadow-soft); z-index: 99; }
+    .nav-links.is-open { display: flex; }
+  }
 
-    /* Alinear barra y títulos */
-    .section-heading {
-      display: flex !important;
-      flex-direction: row !important;
-      align-items: center !important;
-      justify-content: flex-start !important;
-      margin-left: 0 !important;
-      gap: 15px !important;
+  /* 2. ADD THIS: Desktop override */
+  @media (min-width: 769px) {
+    .nav-links { 
+      display: flex !important; 
+      flex-direction: row; 
+      align-items: center; 
+      gap: 1.5rem; 
+      position: static; 
+      background: transparent; 
+      box-shadow: none; 
+      padding: 0;
+      margin-left: auto;
     }
-
-    /* Asegurar alineación izquierda del título */
-    h2, .section-title {
-      text-align: left !important;
-      margin-left: 0 !important;
-    }
+  }
+</style>
+<style>
+  .menu-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--color-text); }
+  @media (max-width: 768px) {
+    .page-shell, .main-container, .morandi-nav { padding-left: 20px !important; padding-right: 20px !important; max-width: 100% !important; }
+    .section-heading { display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important; margin-left: 0 !important; gap: 15px !important; }
+    h2, .section-title { text-align: left !important; margin-left: 0 !important; }
+    .menu-toggle { display: block; }
+    .nav-links { display: none; position: absolute; top: 80px; left: 20px; right: 20px; background: var(--color-surface); flex-direction: column; padding: 20px; border-radius: 20px; box-shadow: var(--shadow-soft); z-index: 99; }
+    .nav-links.is-open { display: flex; }
   }
 </style>
 <html lang="{{ site.Language.LanguageCode | default `en` }}">
@@ -36,6 +49,9 @@
           <span class="dot"></span>
           <a href="{{ site.Home.Permalink }}">{{ site.Title }}</a>
         </div>
+        
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
         <div class="nav-links">
           {{ range $section := site.Params.homepage.sections }}
             {{ $sectionStr := printf "%v" $section }}
@@ -46,11 +62,11 @@
               {{ end }}
             {{ end }}
           {{ end }}
+          <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+            <span class="icon" data-icon-sun>☼</span>
+            <span class="icon" data-icon-moon>☾</span>
+          </button>
         </div>
-        <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
-          <span class="icon" data-icon-sun>☼</span>
-          <span class="icon" data-icon-moon>☾</span>
-        </button>
       </nav>
 
       <main class="main-container">
@@ -61,130 +77,25 @@
     </div>
 
     {{ partial "foot/scripts.html" . }}
-
     <button id="scroll-top" aria-label="Go to Top">↑</button>
     
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/glightbox.min.js"></script>
-
     <script>
       (function () {
-        // 1. Inicialización de GLightbox para tus fotos de los hogares
-        if (typeof GLightbox === 'function') {
-          GLightbox({
-            selector: '.glightbox',
-            loop: true
+        // Menu Toggle
+        const toggle = document.querySelector('.menu-toggle');
+        const links = document.querySelector('.nav-links');
+        if (toggle) {
+          toggle.addEventListener('click', () => {
+            links.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', links.classList.contains('is-open'));
           });
         }
 
-        // 2. Lógica para renderizado de Math/KaTeX
-        const renderQueuedMath = () => {
-          const attempt = () => {
-            if (
-              typeof window !== "undefined" &&
-              typeof window.renderMathInElement === "function" &&
-              typeof window.katex !== "undefined"
-            ) {
-              window.renderMathInElement(document.body, {
-                delimiters: [
-                  { left: "$$", right: "$$", display: true },
-                  { left: "$", right: "$", display: false },
-                  { left: "\\(", right: "\\)", display: false },
-                  { left: "\\[", right: "\\]", display: true },
-                ],
-                throwOnError: false,
-              });
-              return true;
-            }
-            return false;
-          };
-          const tick = () => {
-            if (!attempt()) {
-              window.requestAnimationFrame(tick);
-            }
-          };
-          tick();
-        };
-
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", renderQueuedMath);
-        } else {
-          renderQueuedMath();
-        }
-
-        // 3. Estilos dinámicos para los bloques de código (Botón Copiar)
-        document.querySelectorAll(".highlight").forEach(function (highlight) {
-          const codeBlock = highlight.querySelector("td.lntd:last-child pre code");
-          if (!codeBlock) return;
-
-          const langClass = Array.from(codeBlock.classList).find((cls) =>
-            cls.startsWith("language-")
-          );
-          const label = langClass ? langClass.replace("language-", "").toUpperCase() : "CODE";
-
-          const frame = document.createElement("div");
-          frame.className = "code-frame";
-
-          const header = document.createElement("div");
-          header.className = "code-frame__header";
-          const langTag = document.createElement("span");
-          langTag.className = "code-frame__lang";
-          langTag.textContent = label;
-          header.appendChild(langTag);
-
-          const button = document.createElement("button");
-          button.className = "copy-btn";
-          button.ariaLabel = "Copy code";
-          const iconClipboard = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-          `;
-          const iconCheck = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-          `;
-          button.innerHTML = iconClipboard;
-          header.appendChild(button);
-
-          const body = document.createElement("div");
-          body.className = "code-frame__body";
-          frame.appendChild(header);
-          frame.appendChild(body);
-
-          const parent = highlight.parentNode;
-          highlight.classList.add("code-frame__table");
-          parent.replaceChild(frame, highlight);
-          body.appendChild(highlight);
-
-          button.addEventListener("click", function () {
-            navigator.clipboard.writeText(codeBlock.innerText).then(function () {
-              button.classList.add("copied");
-              button.innerHTML = iconCheck;
-              setTimeout(function () {
-                button.classList.remove("copied");
-                button.innerHTML = iconClipboard;
-              }, 2000);
-            });
-          });
-        });
-      })();
-
-      // 4. Botón Scroll-to-Top
-      (function () {
-        const btn = document.getElementById("scroll-top");
-        if (!btn) return;
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > 300) {
-            btn.classList.add("show-scroll");
-          } else {
-            btn.classList.remove("show-scroll");
-          }
-        });
-        btn.addEventListener("click", () => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
+        // --- Keep your existing GLightbox and Math/KaTeX logic below here ---
+        if (typeof GLightbox === 'function') { GLightbox({ selector: '.glightbox', loop: true }); }
+        
+        // ... paste your existing renderQueuedMath, code copy button, and scroll-top logic here ...
       })();
     </script>
   </body>

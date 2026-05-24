@@ -106,10 +106,9 @@ body[data-theme="dark"] .morandi-nav {
 }
 
 .nav-links {
-  display: flex;
-  gap: 1.25rem;
-  font-size: 0.95rem;
-}
+    display: none; /* Hidden by default on mobile */
+    /* ... your other styles ... */
+  }
 
 .nav-links a {
   color: var(--color-muted);
@@ -1547,4 +1546,43 @@ body[data-theme="dark"] .chroma .mf {
     text-align: left;
     margin-left: 0;
   }
+}
+/* --- Hamburger Menu Logic --- */
+.nav-container {
+  display: flex;
+  align-items: center;
+}
+
+.menu-toggle {
+  display: none; /* Hidden on desktop */
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* Show on mobile */
+  }
+
+  .nav-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--color-surface);
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: var(--shadow-soft);
+    border-radius: 12px;
+    z-index: 100;
+  }
+
+  .nav-menu.is-open {
+    display: flex; /* Shown when toggled */
+  }
+  
 }

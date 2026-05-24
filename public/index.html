@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><style>
+   
+  .menu-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--color-text); }
+  
   @media (max-width: 768px) {
-     
-    .page-shell, .main-container, .morandi-nav {
-      padding-left: 20px !important;
-      padding-right: 20px !important;
-      max-width: 100% !important;
-    }
+    .page-shell, .main-container, .morandi-nav { padding-left: 20px !important; padding-right: 20px !important; max-width: 100% !important; }
+    .section-heading { display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important; margin-left: 0 !important; gap: 15px !important; }
+    h2, .section-title { text-align: left !important; margin-left: 0 !important; }
+    .menu-toggle { display: block; }
+    .nav-links { display: none; position: absolute; top: 80px; left: 20px; right: 20px; background: var(--color-surface); flex-direction: column; padding: 20px; border-radius: 20px; box-shadow: var(--shadow-soft); z-index: 99; }
+    .nav-links.is-open { display: flex; }
+  }
 
-     
-    .section-heading {
-      display: flex !important;
-      flex-direction: row !important;
-      align-items: center !important;
-      justify-content: flex-start !important;
-      margin-left: 0 !important;
-      gap: 15px !important;
+   
+  @media (min-width: 769px) {
+    .nav-links { 
+      display: flex !important; 
+      flex-direction: row; 
+      align-items: center; 
+      gap: 1.5rem; 
+      position: static; 
+      background: transparent; 
+      box-shadow: none; 
+      padding: 0;
+      margin-left: auto;
     }
-
-     
-    h2, .section-title {
-      text-align: left !important;
-      margin-left: 0 !important;
-    }
+  }
+</style>
+<style>
+  .menu-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--color-text); }
+  @media (max-width: 768px) {
+    .page-shell, .main-container, .morandi-nav { padding-left: 20px !important; padding-right: 20px !important; max-width: 100% !important; }
+    .section-heading { display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important; margin-left: 0 !important; gap: 15px !important; }
+    h2, .section-title { text-align: left !important; margin-left: 0 !important; }
+    .menu-toggle { display: block; }
+    .nav-links { display: none; position: absolute; top: 80px; left: 20px; right: 20px; background: var(--color-surface); flex-direction: column; padding: 20px; border-radius: 20px; box-shadow: var(--shadow-soft); z-index: 99; }
+    .nav-links.is-open { display: flex; }
   }
 </style>
 <html lang="es-AR">
@@ -49,7 +62,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
 
-<link rel="stylesheet" href="http://localhost:1313/css/main.min.b44f82e5a9ce60c841082ed135f20ebe53a5bc469a18110d1728ff3de457b179.css" integrity="sha256-tE&#43;C5anOYMhBCC7RNfIOvlOlvEaaGBENFyj/PeRXsXk=">
+<link rel="stylesheet" href="http://localhost:1313/css/main.min.52daa910c864356a5a1b19b9d3c79a40a10128a1024ee41588c8e81127d03538.css" integrity="sha256-UtqpEMhkNWpaGxm508eaQKEBKKECTuQViMjoESfQNTg=">
 
 <link rel="stylesheet" href="http://localhost:1313/vendor/katex/katex.min.css">
 <script defer src="http://localhost:1313/vendor/katex/katex.min.js"></script>
@@ -63,6 +76,9 @@
           <span class="dot"></span>
           <a href="http://localhost:1313/">Centros Geriátricos Mahatma</a>
         </div>
+        
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
         <div class="nav-links">
           
             
@@ -103,11 +119,11 @@
               
             
           
+          <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+            <span class="icon" data-icon-sun>☼</span>
+            <span class="icon" data-icon-moon>☾</span>
+          </button>
         </div>
-        <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
-          <span class="icon" data-icon-sun>☼</span>
-          <span class="icon" data-icon-moon>☾</span>
-        </button>
       </nav>
 
       <main class="main-container">
@@ -141,72 +157,48 @@
   </div>
 
   
-  
-  <div class="hero">
-    <div class="hero-media">
-      
-        <img src="/images/portrait2.png" alt="Centros Geriátricos Mahatma Desde el 2011" class="hero-media-img" loading="lazy">
-      
-    </div>
-    <div class="hero-copy">
-      <span class="hero-copy eyebrow">Centros Geriátricos Mahatma Desde el 2011</span>
-      <h1>Cuidado consciente, amor presente.</h1>
-      
-      
-        <p class="highlights-title">Destacados</p>
-        <ul class="highlight-list">
-          
-            <li>Más de 15 años de experiencia</li>
-          
-            <li>Medico 24 Hrs</li>
-          
-            <li>Habitaciónes individuales y compartidas</li>
-          
-        </ul>
-      
-      
-      
-      <div class="hero-links">
+    <div class="hero">
+      <div class="hero-media">
         
-          <a href="https://www.instagram.com/geriatricosmahatma/" class="chip-link" target="_blank" rel="noopener">Instagram</a>
-        
-          <a href="https://www.facebook.com/hugo.guasco/" class="chip-link" target="_blank" rel="noopener">Facebook</a>
+          
+          <img src="/images/portrait2.png" alt="Centros Geriátricos Mahatma Desde el 2011" class="hero-media-img" loading="lazy">
         
       </div>
-      
+      <div class="hero-copy">
+        <span class="hero-copy eyebrow">Centros Geriátricos Mahatma Desde el 2011</span>
+        <h1>Cuidado consciente, amor presente.</h1>
+        
+        
+          <p class="highlights-title">Sobre nosotros</p>
+          <ul class="highlight-list">
+            
+              <li>Más de 15 años de experiencia</li>
+            
+              <li>Medico 24 Hrs</li>
+            
+              <li>Habitaciónes individuales y compartidas</li>
+            
+          </ul>
+        
+        
+        
+          <div class="hero-links">
+            
+              <a href="https://www.instagram.com/geriatricosmahatma/" class="chip-link" target="_blank" rel="noopener">Instagram</a>
+            
+              <a href="https://www.facebook.com/hugo.guasco/" class="chip-link" target="_blank" rel="noopener">Facebook</a>
+            
+          </div>
+        
+      </div>
     </div>
-  </div>
   
-
 </section>
+
 <style>
-  .hero-container-wrapper {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-  }
-  .section-heading {
-    margin-top: 3rem !important;  
-  }
-
-   
-  .nav-item a[href="/"], 
-  .nav-item a[href="/#"],
-  .navbar-nav a:first-child {
-    display: none !important;
-  }
-
-  @media (max-width: 768px) {
-  .main-container, section {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-  }
-  
-   
-  h2, .section-title {
-    text-align: left;
-    margin-left: 0;
-  }
-}
+  .hero-container-wrapper { padding-top: 0 !important; margin-top: 0 !important; }
+  .section-heading { margin-top: 3rem !important; }
+  .nav-item a[href="/"], .nav-item a[href="/#"], .navbar-nav a:first-child { display: none !important; }
 </style>
 
     
@@ -553,16 +545,23 @@ function changeSlide(id, direction) {
       <h1>Hugo Guasco</h1>
 
       
-        <p class="highlights-title">Destacados</p>
+        <p class="highlights-title">Experiencia</p>
         <ul class="highlight-list">
           
             <li>Enfermero</li>
           
             <li>Educador yoguístico</li>
           
-            <li>Algo más</li>
+            <li>Fundador y director de Centros Geriátricos Mahatna</li>
           
         </ul>
+      
+        <div class="hero-links">
+          
+            <a href="https://www.facebook.com/hugo.guasco/" class="chip-link" target="_blank" rel="noopener">Facebook</a>
+          
+        </div>
+      
       
     </div>
   </div>
@@ -621,6 +620,20 @@ function changeSlide(id, direction) {
         <div class="badges">
           
             <span style="display: inline-block; background: #f0f0f0; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; margin: 2px;">Nutricionista</span>
+          
+        </div>
+      </div>
+    
+      <div class="staff-card" style="text-align: center; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
+        
+          <div style="width: 120px; height: 120px; border-radius: 50%; background: #ddd; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;">Sin foto</div>
+        
+        
+        <h4 style="margin: 5px 0;">Cabral</h4>
+        
+        <div class="badges">
+          
+            <span style="display: inline-block; background: #f0f0f0; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; margin: 2px;">Gimnasia</span>
           
         </div>
       </div>
@@ -903,130 +916,25 @@ function toggleMenu() {
 })();
 </script>
 
-
     <button id="scroll-top" aria-label="Go to Top">↑</button>
     
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/glightbox.min.js"></script>
-
     <script>
       (function () {
         
-        if (typeof GLightbox === 'function') {
-          GLightbox({
-            selector: '.glightbox',
-            loop: true
+        const toggle = document.querySelector('.menu-toggle');
+        const links = document.querySelector('.nav-links');
+        if (toggle) {
+          toggle.addEventListener('click', () => {
+            links.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', links.classList.contains('is-open'));
           });
         }
 
         
-        const renderQueuedMath = () => {
-          const attempt = () => {
-            if (
-              typeof window !== "undefined" &&
-              typeof window.renderMathInElement === "function" &&
-              typeof window.katex !== "undefined"
-            ) {
-              window.renderMathInElement(document.body, {
-                delimiters: [
-                  { left: "$$", right: "$$", display: true },
-                  { left: "$", right: "$", display: false },
-                  { left: "\\(", right: "\\)", display: false },
-                  { left: "\\[", right: "\\]", display: true },
-                ],
-                throwOnError: false,
-              });
-              return true;
-            }
-            return false;
-          };
-          const tick = () => {
-            if (!attempt()) {
-              window.requestAnimationFrame(tick);
-            }
-          };
-          tick();
-        };
-
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", renderQueuedMath);
-        } else {
-          renderQueuedMath();
-        }
-
+        if (typeof GLightbox === 'function') { GLightbox({ selector: '.glightbox', loop: true }); }
         
-        document.querySelectorAll(".highlight").forEach(function (highlight) {
-          const codeBlock = highlight.querySelector("td.lntd:last-child pre code");
-          if (!codeBlock) return;
-
-          const langClass = Array.from(codeBlock.classList).find((cls) =>
-            cls.startsWith("language-")
-          );
-          const label = langClass ? langClass.replace("language-", "").toUpperCase() : "CODE";
-
-          const frame = document.createElement("div");
-          frame.className = "code-frame";
-
-          const header = document.createElement("div");
-          header.className = "code-frame__header";
-          const langTag = document.createElement("span");
-          langTag.className = "code-frame__lang";
-          langTag.textContent = label;
-          header.appendChild(langTag);
-
-          const button = document.createElement("button");
-          button.className = "copy-btn";
-          button.ariaLabel = "Copy code";
-          const iconClipboard = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-          `;
-          const iconCheck = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-          `;
-          button.innerHTML = iconClipboard;
-          header.appendChild(button);
-
-          const body = document.createElement("div");
-          body.className = "code-frame__body";
-          frame.appendChild(header);
-          frame.appendChild(body);
-
-          const parent = highlight.parentNode;
-          highlight.classList.add("code-frame__table");
-          parent.replaceChild(frame, highlight);
-          body.appendChild(highlight);
-
-          button.addEventListener("click", function () {
-            navigator.clipboard.writeText(codeBlock.innerText).then(function () {
-              button.classList.add("copied");
-              button.innerHTML = iconCheck;
-              setTimeout(function () {
-                button.classList.remove("copied");
-                button.innerHTML = iconClipboard;
-              }, 2000);
-            });
-          });
-        });
-      })();
-
-      
-      (function () {
-        const btn = document.getElementById("scroll-top");
-        if (!btn) return;
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > 300) {
-            btn.classList.add("show-scroll");
-          } else {
-            btn.classList.remove("show-scroll");
-          }
-        });
-        btn.addEventListener("click", () => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
+        
       })();
     </script>
   </body>

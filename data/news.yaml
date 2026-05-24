@@ -9,6 +9,12 @@ items:
     badges: ["Nutricionista",]
     profile_image: "images/ana.webp"
 
+  - date: ""
+    detail: "Cabral"
+    badges: ["Gimnasia",]
+    profile_image: ""
+
+
   - 
     detail: "Remix"
     badges: ["DJ"]
