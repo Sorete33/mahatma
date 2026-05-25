@@ -6,6 +6,10 @@ papers:
     links:
       - label: "Fotos"
         url: "#"
+      - label: "Ver en el mapa"
+        url: "https://maps.app.goo.gl/MUskq9nLaku9ZpCHA"
+      - label: "Whatsapp"
+        url: ""
     gallery:
       - "images/m1.jpg"
       - "images/m1_sala.jpeg"
@@ -18,6 +22,10 @@ papers:
     links:
       - label: "Fotos"
         url: "#"
+      - label: "Ver en el mapa"
+        url: "https://maps.app.goo.gl/bcyJF8KTPZqRmANH8"
+      - label: "Whatsapp"
+        url: ""
     gallery:
       - "images/m2.jpg"
       - "images/m2_sala.jpg"
@@ -30,6 +38,10 @@ papers:
     links:
       - label: "Fotos"
         url: "#"
+      - label: "Ver en el mapa"
+        url: "https://maps.app.goo.gl/ECVgANYWRdaTDc98A"
+      - label: "Whatsapp"
+        url: ""
     gallery:
       - "images/m3.jpg"
       - "images/m3_sala.png"
