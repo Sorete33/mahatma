@@ -62,7 +62,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
 
-<link rel="stylesheet" href="http://localhost:1313/css/main.min.a2e00118be14ea09050dfe33871afb4953d88e8e42946ce58a85f6f63e4a66a5.css" integrity="sha256-ouABGL4U6gkFDf4zhxr7SVPYjo5ClGzlioX29j5KZqU=">
+<link rel="stylesheet" href="http://localhost:1313/css/main.min.885208707fcdcac5e30952d5f6cd3dee67b9829539025b303464edb8a3f59de6.css" integrity="sha256-iFIIcH/NysXjCVLV9s097me5gpU5AlswNGTtuKP1neY=">
 
 <link rel="stylesheet" href="http://localhost:1313/vendor/katex/katex.min.css">
 <script defer src="http://localhost:1313/vendor/katex/katex.min.js"></script>
@@ -142,7 +142,7 @@
             
             
               
-                <a href="http://localhost:1313/#research">Nuestros Hogares</a>
+                <a href="http://localhost:1313/#nuestros-hogares">Nuestros Hogares</a>
               
             
           
@@ -150,7 +150,7 @@
             
             
               
-                <a href="http://localhost:1313/#director">Staff</a>
+                <a href="http://localhost:1313/#staff">Staff</a>
               
             
           
@@ -242,7 +242,50 @@
       </div>
     </div>
   
+
+<div class="reviews-section">
+  <h2>Lo que dicen de nuestros hogares</h2>
+  <div id="reviews-container"></div>
+</div>
+
+<script>
+  async function loadReviews() {
+    const container = document.getElementById('reviews-container');
+    
+    const placeIds = [
+      "ChIJe6JOTC2lvpUR3xQPnWXvuUs",
+      "ChIJmVlx1JulvpURg33MNt_ACFQ",
+      "ChIJ1zTamtulvpUREwzBmZvI0Wo"
+    ];
+
+    for (const id of placeIds) {
+      if (!id || id === "") continue; 
+      
+      try {
+        const res = await fetch(`/.netlify/functions/get-reviews?placeId=${id}`);
+        const reviews = await res.json();
+        
+        if (reviews && reviews.length > 0) {
+          reviews.slice(0, 2).forEach(r => {
+            container.innerHTML += `
+              <div class="review-card">
+                <p><strong>${r.authorAttribution.displayName}</strong></p>
+                <p>${r.text.text}</p>
+              </div>
+            `;
+          });
+        }
+      } catch (err) {
+        console.error("Error cargando reviews:", err);
+      }
+    }
+  }
+  loadReviews();
+</script>
+  
 </section>
+
+
 
 <style>
   .hero-container-wrapper { padding-top: 0 !important; margin-top: 0 !important; }
@@ -279,7 +322,7 @@
 
 
 
-<section id="research" class="section-block">
+<section id="nuestros-hogares" class="section-block">
   <div class="section-heading">
     <span class="bar"></span>
     <div><h2>Nuestros Hogares</h2></div>
@@ -626,7 +669,7 @@ function changeSlide(id, direction) {
 
       <section class="hero-container-wrapper" style="padding-top: 0;">
   
-  <div id="director" class="section-heading" style="margin-top: 3rem; margin-bottom: 1.5rem;">
+  <div id="staff" class="section-heading" style="margin-top: 3rem; margin-bottom: 1.5rem;">
     <span class="section-heading bar"></span>
     <h2>Staff</h2>
   </div>
@@ -848,7 +891,7 @@ function changeSlide(id, direction) {
   </div>
 
   <div style="text-align: center; max-width: 600px; margin: 0 auto; line-height: 1.8;">
-    <p>¿Tenés alguna consulta? Ponete en contacto con nosotros.</p>
+    <p>¿Te gustaría visitarnos? Ponete en contacto con nosotros.</p>
     <p><strong>Nuestros teléfonos:</strong> <br> Mahatma 1: 2346-331020 <br> Mahatma 2: 2346-688161 <br> Mahatma 3: 2346-503834</p>
     <p><strong>Email:</strong> <a href="mailto:geriatricosmahatma@gmail.com">geriatricosmahatma@gmail.com</a></p>
   </div>

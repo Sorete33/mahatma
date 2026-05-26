@@ -8,6 +8,9 @@ enableRobotsTXT = true
 
 [params]
   description = 'Centros Geriátricos Mahatma.'
+  google_place_id_1 = 'ChIJe6JOTC2lvpUR3xQPnWXvuUs'
+  google_place_id_2 = 'ChIJmVlx1JulvpURg33MNt_ACFQ'
+  google_place_id_3 = 'ChIJ1zTamtulvpUREwzBmZvI0Wo'
   email = 'geriatricosmahatma@gmail.com'
   location = 'Chivilcoy, Buenos Aires, Argentina'
   avatar = "static/portrait.png"
@@ -15,26 +18,26 @@ enableRobotsTXT = true
   disableHomeLink = true
 
 [params.homepage]
-  sections = ["hero", "research", "director", "news", "contacto"]
+  sections = ["hero", "nuestros-hogares", "staff", "empleadx", "contacto"]
 
   [params.homepage.hero]
     enable = true
     layout = "hero"
     title = "Nosotros"
 
-  [params.homepage.research]
+  [params.homepage."nuestros-hogares"]
     enable = true
     layout = "cards"
     title = "Nuestros Hogares"
 
-  [params.homepage.director]
-    enable = true
-    layout = "director"
-    title = "Staff"
-
-  [params.homepage.news]
+  [params.homepage.staff]
     enable = true
     layout = "staff"
+    title = "Staff"
+
+  [params.homepage.empleadx]
+    enable = true
+    layout = "empleadx"
     title = ""
     showInMenu = false
   
@@ -90,12 +93,12 @@ enableRobotsTXT = true
 
 [[menus.main]]
   name = "Nuestros Hogares"
-  url = "/#research"
+  url = "/#nuestros-hogares"
   weight = 2
 
 [[menus.main]]
   name = "Staff"
-  url = "/#news"
+  url = "/#staff"
   weight = 3
 
 [[menus.main]]

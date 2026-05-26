@@ -41,14 +41,7 @@
 <html lang="{{ site.Language.LanguageCode | default `en` }}">
   <head>
     {{ partial "head.html" . }}
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "NursingHome",
-  "name": "Mahatma",
-  "url": "https://voluble-centaur-8d5080.netlify.app/"
-}
-</script>
+    {{ partial "schema.html" . }}
   </head>
   <body data-theme="light">
     <div class="page-shell">
