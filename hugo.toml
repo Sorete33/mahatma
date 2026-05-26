@@ -1,5 +1,5 @@
 themesDir = "themes"
-baseURL = 'https://centros-geriatricos-mahatma.netlify.app/'
+baseURL = 'https://sorete33.github.io/mahatma/'
 languageCode = 'es-AR'
 title = 'Centros Geriátricos Mahatma'
 theme = "hugo-celadon"
