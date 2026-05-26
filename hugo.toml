@@ -1,5 +1,5 @@
 themesDir = "themes"
-baseURL = 'https://voluble-centaur-8d5080.netlify.app/'
+baseURL = 'centros-geriatricos-mahatma.netlify.app/'
 languageCode = 'es-AR'
 title = 'Centros Geriátricos Mahatma'
 theme = "hugo-celadon"
@@ -7,7 +7,7 @@ enableRobotsTXT = true
 
 
 [params]
-  description = 'Centros Geriátricos Mahatma.'
+  description = 'Centros Geriátricos Mahatma'
   google_place_id_1 = 'ChIJe6JOTC2lvpUR3xQPnWXvuUs'
   google_place_id_2 = 'ChIJmVlx1JulvpURg33MNt_ACFQ'
   google_place_id_3 = 'ChIJ1zTamtulvpUREwzBmZvI0Wo'
