@@ -1,46 +1,37 @@
 items:
-  - date: ""
-    detail: "Fabián Girotti"
+  - detail: "Fabián Girotti"
     badges: ["Medico General",]
     profile_image: "images/fabian.jpg"
 
-  - date: ""
-    detail: "Ana Balbo"
+  - detail: "Ana Balbo"
     badges: ["Nutricionista",]
     profile_image: "images/ana.webp"
 
-  - date: ""
-    detail: "Mariela Cabral"
+  - detail: "Mariela Cabral"
     badges: ["Psicomotocitrista",]
     profile_image: "images/mariela.png"
 
 
-  - 
-    detail: "Remix"
-    badges: ["DJ"]
+  - detail: "Renzo Guasco"
+    badges: ["Técnico en alimentos"]
     profile_image: "images/ren.jpg"
 
-  -
-    detail: "Patri"
+  - detail: "Patricia Guasco"
     badges: ["Administración"]
     profile_image: "images/patri.jpg"
 
-  - date: ""
-    detail: "Héctor Gomez"
+  - detail: "Héctor Gomez"
     badges: ["Mantenimiento",]
     profile_image: ""
 
-  - date: ""
-    detail: "Jessica Yankovich"
+  - detail: "Jessica Yankovich"
     badges: ["Engargada Mahatma 1",]
     profile_image: ""
 
-  - date: ""
-    detail: "Karina Resquin"
-    badges: ["Encargada Mahatma 2",]
-    profile_image: ""
+  - detail: "Karina Resquin"
+    badges: ["Encargada Mahatma 2 y 4",]
+    profile_image: "images/karina.jpg"
 
-  - date: ""
-    detail: "Cantante"
+  - detail: "Gabriel Bartomeo"
     badges: ["Cantante",]
-    profile_image: ""
+    profile_image: "images/barto.jpg"
