@@ -1,5 +1,5 @@
 themesDir = "themes"
-baseURL = 'https://sorete33.github.io/mahatma/'
+baseURL = 'https://centrosgeriatricosmahatma.com.ar'
 languageCode = 'es-AR'
 title = 'Centros Geriátricos Mahatma'
 theme = "hugo-celadon"
