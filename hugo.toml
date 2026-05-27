@@ -18,9 +18,9 @@ enableRobotsTXT = true
   disableHomeLink = true
 
 [params.homepage]
-  sections = ["hero", "nuestros-hogares", "staff", "empleadx", "contacto"]
+  sections = ["nosotros", "nuestros-hogares", "staff", "empleadx", "contacto"]
 
-  [params.homepage.hero]
+  [params.homepage.nosotros]
     enable = true
     layout = "hero"
     title = "Nosotros"
