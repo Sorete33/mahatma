@@ -1,38 +1,40 @@
-<div class="reviews-section">
-  <h2>Lo que dicen de nuestros hogares</h2>
-  <div id="reviews-container"></div>
-</div>
+<section id="reviews-section" style="padding: 3rem 1rem; text-align: center;">
+  <h2>Lo que dicen de nosotros</h2>
+  <div id="reviews-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: 2rem auto;">
+    <p>Cargando reseñas...</p>
+  </div>
+</section>
 
 <script>
   async function loadReviews() {
     const container = document.getElementById('reviews-container');
-    // Accedemos a los valores definidos en hugo.toml
     const placeIds = [
       "{{ site.Params.google_place_id_1 }}",
       "{{ site.Params.google_place_id_2 }}",
       "{{ site.Params.google_place_id_3 }}"
     ];
 
+    let allReviews = [];
+    
+    // Obtenemos reseñas de los 3 IDs
     for (const id of placeIds) {
-      if (!id || id === "") continue; 
-      
+      if (!id) continue;
       try {
-        const res = await fetch(`/.netlify/functions/get-reviews?placeId=${id}`);
-        const reviews = await res.json();
-        
-        if (reviews && reviews.length > 0) {
-          reviews.slice(0, 2).forEach(r => {
-            container.innerHTML += `
-              <div class="review-card">
-                <p><strong>${r.authorAttribution.displayName}</strong></p>
-                <p>${r.text.text}</p>
-              </div>
-            `;
-          });
-        }
-      } catch (err) {
-        console.error("Error cargando reviews:", err);
-      }
+        const res = await fetch(`/api/reviews?placeId=${id}`);
+        const data = await res.json();
+        allReviews = [...allReviews, ...data];
+      } catch (err) { console.error(err); }
+    }
+
+    if (allReviews.length > 0) {
+      container.innerHTML = allReviews.slice(0, 6).map(r => `
+        <div style="border: 1px solid #eee; padding: 20px; border-radius: 12px; text-align: left;">
+          <p><strong>${r.authorAttribution.displayName}</strong></p>
+          <p style="font-size: 0.9rem; color: #555;">${r.text.text.substring(0, 120)}...</p>
+        </div>
+      `).join('');
+    } else {
+      container.innerHTML = "<p>No hay reseñas disponibles actualmente.</p>";
     }
   }
   loadReviews();
