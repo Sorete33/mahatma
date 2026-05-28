@@ -1,0 +1,94 @@
+<section class="hero-container-wrapper" id="nosotros" style="padding-top: 0;">
+  <div class="section-heading" style="margin-top: 3rem; margin-bottom: 1.5rem;">
+    <span class="section-heading bar"></span>
+    <h2>Nosotros</h2>
+  </div>
+
+  {{ with .Data.institucional }}
+    <div class="hero" style="align-items: start;"> <div class="hero-media">
+        {{ if .profile_image }}
+          <img src="{{ .profile_image | relURL }}" alt="{{ .name | default "Profile" }}" class="hero-media-img" loading="lazy">
+        {{ end }}
+      </div>
+      
+      <div class="hero-copy" style="overflow: hidden;">
+        {{ with .name }}<span class="eyebrow">{{ . }}</span>{{ end }}
+        {{ with .title }}<h1>{{ . }}</h1>{{ end }}
+        
+        {{ if .highlights }}
+          <details class="dropdown-highlights" style="margin: 1.5rem 0;">
+  <summary style="
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    padding: 0.75rem 1rem;
+    background: var(--color-surface-muted);
+    color: var(--color-primary);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s ease;
+    list-style: none; /* Elimina la flecha nativa */
+  " onmouseover="this.style.background='var(--color-primary)'; this.style.color='white';" 
+     onmouseout="this.style.background='var(--color-surface-muted)'; this.style.color='var(--color-primary)';">
+    Sobre nosotros ▼
+  </summary>
+  
+  <ul class="highlight-list" style="max-height: 300px; overflow-y: auto; margin-top: 1rem; padding-left: 1.5rem; padding-right: 10px;">
+    {{ range .highlights }}
+      <li>{{ . }}</li>
+    {{ end }}
+  </ul>
+</details>
+        {{ end }}
+        
+        {{ if .links }}
+          <div class="hero-links" style="margin-top: 1rem;">
+            {{ range .links }}
+              <a href="{{ .url | default "#" }}" class="chip-link" target="_blank" rel="noopener">{{ .label }}</a>
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+
+  {{ partial "home/reviews.html" . }}
+</section>
+
+<style>
+  /* Forzamos que el contenedor de detalles no rompa el grid */
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Esto evita que el contenido se desborde */
+  }
+
+  /* Aseguramos que la imagen mantenga su tamaño */
+  .hero-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Ajuste específico para el summary */
+  .dropdown-highlights summary {
+    list-style: none;
+    font-weight: 600;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* Quitamos el marcador por defecto en todos los navegadores */
+  .dropdown-highlights summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

@@ -22,12 +22,12 @@ enableRobotsTXT = true
 
   [params.homepage.nosotros]
     enable = true
-    layout = "hero"
+    layout = "nosotros"
     title = "Nosotros"
 
   [params.homepage."nuestros-hogares"]
     enable = true
-    layout = "cards"
+    layout = "nuestros-hogares"
     title = "Nuestros Hogares"
 
   [params.homepage.staff]
