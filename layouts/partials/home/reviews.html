@@ -23,17 +23,22 @@
 
       if (allReviews.length > 0) {
         // Inside your loadReviews function's .map() call:
-container.innerHTML = allReviews.slice(0, 6).map(r => `
-  <div class="review-card" style="border: 1px solid #ddd; padding: 20px; border-radius: 12px; text-align: left; background: #fff;">
-    <div style="color: #f39c12; margin-bottom: 10px;">
-      ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}
+container.innerHTML = allReviews.slice(0, 6).map(r => {
+  // Si la reseña no tiene texto, ponemos un mensaje genérico o un texto vacío
+  const textoReseña = r.text ? r.text : "Calificó con 5 estrellas sin dejar comentarios.";
+  
+  return `
+    <div class="review-card" style="border: 1px solid #ddd; padding: 20px; border-radius: 12px; text-align: left; background: #fff;">
+      <div style="color: #f39c12; margin-bottom: 10px;">
+        ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}
+      </div>
+      <p style="font-size: 0.95rem; color: #333; margin-bottom: 15px;">
+        "${textoReseña.substring(0, 150)}${textoReseña.length > 150 ? '...' : ''}"
+      </p>
+      <p style="font-size: 0.85rem; font-weight: bold;">— ${r.author_name}</p>
     </div>
-    <p style="font-size: 0.95rem; color: #333; margin-bottom: 15px;">
-      "${r.text.substring(0, 150)}${r.text.length > 150 ? '...' : ''}"
-    </p>
-    <p style="font-size: 0.85rem; font-weight: bold;">— ${r.author_name}</p>
-  </div>
-`).join('');
+  `;
+}).join('');
       } else {
         container.innerHTML = "<p>Por el momento no tenemos reseñas cargadas.</p>";
       }
