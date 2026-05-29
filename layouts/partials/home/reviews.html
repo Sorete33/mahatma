@@ -1,7 +1,7 @@
 <section id="reviews-section" style="padding: 3rem 1rem; text-align: center;">
   <h2>Lo que dicen de nosotros</h2>
   <div id="reviews-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: 2rem auto;">
-    <p>Cargando reseñas...</p>
+    <p class="loading-text">Cargando reseñas de Google...</p>
   </div>
 </section>
 
@@ -12,30 +12,37 @@
       "{{ site.Params.google_place_id_1 }}",
       "{{ site.Params.google_place_id_2 }}",
       "{{ site.Params.google_place_id_3 }}"
-    ];
+    ].filter(id => id && id !== ""); // Filter out empty strings
 
-    let allReviews = [];
-    
-    // Obtenemos reseñas de los 3 IDs
-    for (const id of placeIds) {
-      if (!id) continue;
-      try {
-        const res = await fetch(`/api/reviews?placeId=${id}`);
-        const data = await res.json();
-        allReviews = [...allReviews, ...data];
-      } catch (err) { console.error(err); }
-    }
+    try {
+      const responses = await Promise.all(
+        placeIds.map(id => fetch(`/api/reviews?placeId=${id}`).then(res => res.json()))
+      );
+      
+      const allReviews = responses.flat().sort((a, b) => b.rating - a.rating);
 
-    if (allReviews.length > 0) {
-      container.innerHTML = allReviews.slice(0, 6).map(r => `
-        <div style="border: 1px solid #eee; padding: 20px; border-radius: 12px; text-align: left;">
-          <p><strong>${r.authorAttribution.displayName}</strong></p>
-          <p style="font-size: 0.9rem; color: #555;">${r.text.text.substring(0, 120)}...</p>
-        </div>
-      `).join('');
-    } else {
-      container.innerHTML = "<p>No hay reseñas disponibles actualmente.</p>";
+      if (allReviews.length > 0) {
+        // Inside your loadReviews function's .map() call:
+container.innerHTML = allReviews.slice(0, 6).map(r => `
+  <div class="review-card" style="border: 1px solid #ddd; padding: 20px; border-radius: 12px; text-align: left; background: #fff;">
+    <div style="color: #f39c12; margin-bottom: 10px;">
+      ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}
+    </div>
+    <p style="font-size: 0.95rem; color: #333; margin-bottom: 15px;">
+      "${r.text.substring(0, 150)}${r.text.length > 150 ? '...' : ''}"
+    </p>
+    <p style="font-size: 0.85rem; font-weight: bold;">— ${r.author_name}</p>
+  </div>
+`).join('');
+      } else {
+        container.innerHTML = "<p>Por el momento no tenemos reseñas cargadas.</p>";
+      }
+    } catch (err) {
+      console.error("Error loading reviews:", err);
+      container.innerHTML = "<p>No pudimos cargar las reseñas. Intenta más tarde.</p>";
     }
   }
-  loadReviews();
+  
+  // Initialize
+  document.addEventListener('DOMContentLoaded', loadReviews);
 </script>

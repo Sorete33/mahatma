@@ -17,8 +17,11 @@ export async function onRequest(context) {
     const reviews = data.result ? data.result.reviews : [];
     
     return new Response(JSON.stringify(reviews || []), {
-      headers: { 'Content-Type': 'application/json' },
-    });
+  headers: { 
+    'Content-Type': 'application/json',
+    'Cache-Control': 'public, max-age=86400' // Caches for 24 hours
+  },
+});
   } catch (e) {
     return new Response(JSON.stringify({ error: e.message }), { status: 500 });
   }
