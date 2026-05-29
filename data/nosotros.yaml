@@ -33,15 +33,5 @@ institucional:
       url: "https://www.instagram.com/geriatricosmahatma/"
     - label: "Facebook"
       url: "https://www.facebook.com/hugo.guasco/"
-
-director:
-  name: "Director General"
-  title: "Hugo Guasco."
-  profile_image: "images/hugo.jpg"
-  highlights:
-    - "Enfermero"
-    - "Educador yoguístico"
-    - "Algo más"
-  links:
-    - label: "Facebook"
-      url: "https://www.facebook.com/hugo.guasco/"
+    - label: "Gmail"
+      url: "mailto:geriatricosmahatma@gmail.com"
