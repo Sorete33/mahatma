@@ -11,7 +11,6 @@ items:
     badges: ["Psicomotocitrista",]
     profile_image: "images/mariela.png"
 
-
   - detail: "Renzo Guasco"
     badges: ["Técnico en alimentos"]
     profile_image: "images/ren.jpg"
@@ -22,7 +21,7 @@ items:
 
   - detail: "Héctor Gomez"
     badges: ["Mantenimiento",]
-    profile_image: ""
+    profile_image: "images/tito.jpg"
 
   - detail: "Yesuca Yancovich"
     badges: ["Engargada Mahatma 1",]
