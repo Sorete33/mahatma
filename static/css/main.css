@@ -1663,3 +1663,43 @@ body[data-theme="dark"] .chroma .mf {
 .list-style {
   font-family: "Montserrat", sans-serif !important;
 }
+
+body[data-theme="dark"] .glightbox-clean .gclose,
+body[data-theme="dark"] .glightbox-clean .gnext,
+body[data-theme="dark"] .glightbox-clean .gprev {
+  background-color: var(--color-surface-muted) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Cambia las flechitas internas (los SVG) a color claro */
+body[data-theme="dark"] .glightbox-clean .gclose path,
+body[data-theme="dark"] .glightbox-clean .gnext path,
+body[data-theme="dark"] .glightbox-clean .gprev path {
+  fill: var(--color-text) !important;
+}
+
+/* Efecto al pasar el mouse (Hover) en modo oscuro */
+body[data-theme="dark"] .glightbox-clean .gclose:hover,
+body[data-theme="dark"] .glightbox-clean .gnext:hover,
+body[data-theme="dark"] .glightbox-clean .gprev:hover {
+  background-color: var(--color-primary) !important;
+}
+
+body[data-theme="dark"] .glightbox-clean .gclose:hover path,
+body[data-theme="dark"] .glightbox-clean .gnext:hover path,
+body[data-theme="dark"] .glightbox-clean .gprev:hover path {
+  fill: var(--color-bg) !important;
+}
+
+/* Caja de descripción de la foto en modo oscuro (debajo o al costado) */
+body[data-theme="dark"] .glightbox-clean .gslide-description {
+  background: var(--color-surface) !important;
+}
+
+body[data-theme="dark"] .glightbox-clean .gslide-title {
+  color: var(--color-text) !important;
+}
+
+body[data-theme="dark"] .glightbox-clean .gslide-desc {
+  color: var(--color-muted) !important;
+}

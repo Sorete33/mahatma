@@ -64,9 +64,9 @@
                 {{ .label }}
               </a>
 
-              <dialog id="modal-{{ $item.title | urlize }}" class="native-modal" style="border:none; border-radius:8px; padding:20px; max-width:500px; width:90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3); background: var(--color-surface, #fff); color: var(--color-text, #000);">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #ccc; padding-bottom:5px;">
-                  <h4 style="margin:0;">{{ $item.title }}</h4>
+              <dialog id="modal-{{ $item.title | urlize }}" class="native-modal" style="border:none; border-radius:8px; padding:20px; max-width:500px; width:90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3); background: var(--color-surface); color: var(--color-text);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid var(--color-surface-muted); padding-bottom:5px;">
+                  <h4 style="margin:0; color: var(--color-text);">{{ $item.title }}</h4>
                   <button type="button" onclick="this.closest('dialog').close()" style="background:none; border:none; font-size:20px; cursor:pointer; color:inherit;">&times;</button>
                 </div>
                 
@@ -75,16 +75,14 @@
                     {{ range $index, $imgUrl := $item.gallery }}
                       <div class="slide-{{ $item.title | urlize }}" data-index="{{ $index }}" style="{{ if gt $index 0 }}display:none;{{ end }}">
                         <img src="{{ $imgUrl | relURL }}" style="max-width:100%; max-height:350px; object-fit:contain; border-radius:4px;">
-                        <p style="font-size:12px; margin-top:5px; opacity:0.7;">{{ add $index 1 }} / {{ len $item.gallery }}</p>
+                        <p style="font-size:12px; margin-top:5px; color: var(--color-muted);">{{ add $index 1 }} / {{ len $item.gallery }}</p>
                       </div>
                     {{ end }}
                     
-                    {{ if gt (len $item.gallery) 1 }}
-                      <div style="display:flex; justify-content: space-between; margin-top:10px;">
-                        <button type="button" onclick="changeSlide('{{ $item.title | urlize }}', -1)" style="padding:5px 15px; cursor:pointer; background:var(--color-surface-brighter, #eee); border:1px solid #ccc; border-radius:4px; color:inherit;">&larr; Ant</button>
-                        <button type="button" onclick="changeSlide('{{ $item.title | urlize }}', 1)" style="padding:5px 15px; cursor:pointer; background:var(--color-surface-brighter, #eee); border:1px solid #ccc; border-radius:4px; color:inherit;">Sig &rarr;</button>
-                      </div>
-                    {{ end }}
+                    <div style="display:flex; justify-content: space-between; margin-top:10px;">
+                      <button type="button" onclick="changeSlide('{{ $item.title | urlize }}', -1)" class="modal-nav-btn" style="padding:5px 15px; cursor:pointer; background:var(--color-surface-muted); border:1px solid var(--color-surface-muted); border-radius:4px; color:var(--color-text); font-family: inherit; font-weight: 500;">&larr; Ant</button>
+                      <button type="button" onclick="changeSlide('{{ $item.title | urlize }}', 1)" class="modal-nav-btn" style="padding:5px 15px; cursor:pointer; background:var(--color-surface-muted); border:1px solid var(--color-surface-muted); border-radius:4px; color:var(--color-text); font-family: inherit; font-weight: 500;">Sig &rarr;</button>
+                    </div>
                   {{ else }}
                     <div>
                       <img src="{{ $item.image | relURL }}" style="max-width:100%; max-height:350px; object-fit:contain; border-radius:4px;">
