@@ -1,9 +1,35 @@
 <section id="reviews-section" style="padding: 3rem 1rem; text-align: center;">
   <h2>Lo que dicen de nosotros</h2>
   <div id="reviews-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: 2rem auto;">
-    <p class="loading-text">Cargando reseñas de Google...</p>
+    <p class="loading-text" style="color: var(--color-muted);">Cargando reseñas de Google...</p>
   </div>
 </section>
+
+<style>
+  /* Estilos dinámicos para las tarjetas de reseñas que responden al modo oscuro */
+  .dynamic-review-card {
+    border: 1px solid var(--color-surface-muted);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: left;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .dynamic-review-text {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+
+  .dynamic-review-author {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--color-primary);
+  }
+</style>
 
 <script>
   async function loadReviews() {
@@ -22,29 +48,27 @@
       const allReviews = responses.flat().sort((a, b) => b.rating - a.rating);
 
       if (allReviews.length > 0) {
-        // Inside your loadReviews function's .map() call:
-container.innerHTML = allReviews.slice(0, 6).map(r => {
-  // Si la reseña no tiene texto, ponemos un mensaje genérico o un texto vacío
-  const textoReseña = r.text ? r.text : "Calificó con 5 estrellas sin dejar comentarios.";
-  
-  return `
-    <div class="review-card" style="border: 1px solid #ddd; padding: 20px; border-radius: 12px; text-align: left; background: #fff;">
-      <div style="color: #f39c12; margin-bottom: 10px;">
-        ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}
-      </div>
-      <p style="font-size: 0.95rem; color: #333; margin-bottom: 15px;">
-        "${textoReseña.substring(0, 150)}${textoReseña.length > 150 ? '...' : ''}"
-      </p>
-      <p style="font-size: 0.85rem; font-weight: bold;">— ${r.author_name}</p>
-    </div>
-  `;
-}).join('');
+        container.innerHTML = allReviews.slice(0, 6).map(r => {
+          const textoReseña = r.text ? r.text : "Calificó con 5 estrellas sin dejar comentarios.";
+          
+          return `
+            <div class="dynamic-review-card">
+              <div style="color: #f39c12; margin-bottom: 10px; font-size: 1.1rem;">
+                ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}
+              </div>
+              <p class="dynamic-review-text">
+                "${textoReseña.substring(0, 150)}${textoReseña.length > 150 ? '...' : ''}"
+              </p>
+              <p class="dynamic-review-author">— ${r.author_name}</p>
+            </div>
+          `;
+        }).join('');
       } else {
-        container.innerHTML = "<p>Por el momento no tenemos reseñas cargadas.</p>";
+        container.innerHTML = "<p style='color: var(--color-muted);'>Por el momento no tenemos reseñas cargadas.</p>";
       }
     } catch (err) {
       console.error("Error loading reviews:", err);
-      container.innerHTML = "<p>No pudimos cargar las reseñas. Intenta más tarde.</p>";
+      container.innerHTML = "<p style='color: var(--color-highlight);'>No pudimos cargar las reseñas. Intenta más tarde.</p>";
     }
   }
   
