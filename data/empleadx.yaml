@@ -23,7 +23,7 @@ items:
     badges: ["Mantenimiento",]
     profile_image: "images/tito.jpg"
 
-  - detail: "Yesuca Yancovich"
+  - detail: "Jessica Yancovich"
     badges: ["Engargada Mahatma 1",]
     profile_image: "images/yesi.png"
 
@@ -34,3 +34,7 @@ items:
   - detail: "Gabriel Bartomeo"
     badges: ["Cantante",]
     profile_image: "images/barto.jpg"
+  
+  - detail: "Sebastián Di Siervo"
+    badges: ["Cantante",]
+    profile_image: ""
