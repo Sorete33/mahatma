@@ -60,12 +60,12 @@
 </section>
 
 <style>
-  /* Evita que el título principal desborde o se corte en pantallas chicas */
+  /* Evita que el título principal desborde y obliga a mantener las palabras completas */
   .hero-copy h1 {
-    font-size: clamp(2rem, 6vw, 3.5rem); /* Se achica fluidamente en celulares y crece en PC */
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto; /* Si es recontra necesario, mete un guion sutil al cortar */
+    font-size: clamp(1.8rem, 5.5vw, 3.5rem); /* Achicamos un pelito más el mínimo para que entre mejor */
+    word-break: keep-all;                  /* Evita romper la palabra a la mitad */
+    overflow-wrap: normal;                 /* Desactiva el quiebre forzado de cadenas */
+    hyphens: none !important;              /* Chau guiones de separación */
     line-height: 1.2;
   }
 
