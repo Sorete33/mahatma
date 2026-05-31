@@ -1,0 +1,188 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<div class="hero-banner-professional">
+  <div class="swiper hero-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="{{ "images/m1.jpg" | relURL }}" alt="Centros Geriátricos Mahatma Sede 1" class="hero-banner-bg">
+      </div>
+      <div class="swiper-slide">
+        <img src="{{ "images/m2.jpg" | relURL }}" alt="Centros Geriátricos Mahatma Sede 2" class="hero-banner-bg">
+      </div>
+      <div class="swiper-slide">
+        <img src="{{ "images/m3.jpg" | relURL }}" alt="Centros Geriátricos Mahatma Sede 3" class="hero-banner-bg">
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-banner-overlay"></div>
+  
+  <div class="hero-banner-content">
+    <h1 class="hero-banner-title">Cuidado, respeto y calidez humana</h1>
+    <p class="hero-banner-subtitle">Residencias diseñadas para el bienestar integral de nuestros adultos mayores en Chivilcoy.</p>
+    <div class="hero-banner-actions">
+      <a href="#nuestros-hogares" class="hero-btn hero-btn-primary">Conocer las sedes</a>
+      <a href="#contacto" id="btn-escribinos" class="hero-btn hero-btn-secondary">Escribinos</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-banner-professional {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 450px;
+    max-height: 600px;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 2rem;
+    box-sizing: border-box;
+  }
+
+  .hero-swiper {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero-banner-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.65) 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .hero-banner-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    color: #ffffff;
+    animation: fadeInHero 1s ease-out;
+  }
+
+  .hero-banner-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-banner-subtitle {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    line-height: 1.6;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-banner-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .hero-btn-primary {
+    background-color: #0d6efd;
+    color: #ffffff;
+  }
+
+  .hero-btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
+  }
+
+  .hero-btn-secondary {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .hero-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  @keyframes fadeInHero {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .hero-banner-professional {
+      height: 60vh;
+      padding: 0 1rem;
+    }
+    .hero-banner-title {
+      font-size: 1.8rem;
+    }
+    .hero-banner-subtitle {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-btn {
+      padding: 0.6rem 1.5rem;
+      font-size: 0.9rem;
+      width: 100%;
+      max-width: 280px;
+    }
+    .hero-banner-actions {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const heroSwiper = new Swiper('.hero-swiper', {
+      loop: true,
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      speed: 1500
+    });
+  });
+</script>

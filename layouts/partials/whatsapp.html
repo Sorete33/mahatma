@@ -1,11 +1,5 @@
-<footer class="site-footer">
-  <div class="footer-container">
-    <p>&copy; {{ now.Format "2006" }} Centros Geriátricos Mahatma. Todos los derechos reservados.</p>
-  </div>
-</footer>
-
+<!-- Componente del Botón Flotante Fijo de WhatsApp (Inyectado al final) -->
 <div id="wpp-floating-container" style="position: fixed !important; bottom: 30px !important; right: 30px !important; z-index: 99999 !important; display: block !important;">
-  
   <button onclick="toggleWppFloatMenu(event)" aria-label="Contacto por WhatsApp" 
           style="width: 60px !important; height: 60px !important; background-color: #25d366 !important; border: none !important; border-radius: 50% !important; display: flex !important; justify-content: center !important; align-items: center !important; cursor: pointer !important; box-shadow: 0 8px 24px rgba(0,0,0,0.2) !important; padding: 0 !important; margin: 0 !important;">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 32px !important; height: 32px !important; display: block !important;">
@@ -28,24 +22,22 @@
     }
   }
 
-  // Cerrar el menú si se hace clic en cualquier otra parte de la pantalla
   document.addEventListener("click", function(event) {
     var dropdown = document.getElementById("wpp-float-options");
     if (dropdown) { dropdown.style.display = "none"; }
   });
 
-  // Lógica de vinculación interactiva para el botón "Escribinos" del Banner
+  // Vinculación interactiva entre el botón Escribinos y el contenedor flotante
   document.addEventListener("DOMContentLoaded", function() {
     var btnEscribinos = document.getElementById("btn-escribinos");
     if (btnEscribinos) {
       btnEscribinos.addEventListener("click", function(e) {
-        e.preventDefault(); 
-        e.stopPropagation();  
+        e.preventDefault();
+        e.stopPropagation();
         
         var dropdown = document.getElementById("wpp-float-options");
         if (dropdown) {
-          dropdown.style.display = "flex"; 
-          
+          dropdown.style.display = "flex";
           var container = document.getElementById("wpp-floating-container");
           if (container) {
             container.scrollIntoView({ behavior: 'smooth', block: 'end' });

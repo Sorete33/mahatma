@@ -1703,3 +1703,143 @@ body[data-theme="dark"] .glightbox-clean .gslide-title {
 body[data-theme="dark"] .glightbox-clean .gslide-desc {
   color: var(--color-muted) !important;
 }
+
+.card-summary li {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+/* Whatsapp
+/* ==========================================================================
+   1. BOTÓN FLOTANTE DEL FOOTER (FIJO ABAJO A LA DERECHA)
+   ========================================================================== */
+.whatsapp-menu-fixed {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  z-index: 9999 !important;
+  text-align: left !important;
+}
+
+.wpp-float-dropdown {
+  position: absolute;
+  bottom: 75px;
+  right: 0;
+  background: var(--color-surface);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 140px;
+  z-index: 1100;
+  border: 1px solid var(--color-surface-muted);
+}
+
+.wpp-float-dropdown a {
+  text-decoration: none !important;
+  color: var(--color-text) !important;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+  display: block;
+}
+
+.wpp-float-dropdown a:hover {
+  background-color: var(--color-surface-muted);
+  color: #128c7e !important;
+}
+
+
+/* ==========================================================================
+   2. BOTÓN EXCLUSIVO DEL MENÚ SUPERIOR (HEADER)
+   ========================================================================== */
+.exclusivo-wpp-header-item {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  list-style: none !important;
+  margin-left: 15px !important;
+}
+
+.exclusivo-wpp-header-btn {
+  width: 32px !important;
+  height: 32px !important;
+  background-color: #25d366 !important;
+  border: none !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+}
+
+.exclusivo-wpp-header-btn img {
+  width: 18px !important;
+  height: 18px !important;
+  display: block !important;
+}
+
+/* El desplegable del menú superior */
+.exclusivo-wpp-header-dropdown {
+  display: none; /* Cerrado por defecto */
+  position: absolute !important;
+  top: 40px !important;
+  right: 0 !important;
+  background: var(--color-surface) !important;
+  padding: 8px !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-soft) !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  min-width: 150px !important;
+  z-index: 99999 !important;
+  border: 1px solid var(--color-surface-muted) !important;
+}
+
+/* Se activa solo con esta clase */
+.exclusivo-wpp-header-dropdown.is-open {
+  display: flex !important;
+}
+
+.exclusivo-wpp-header-dropdown a {
+  text-decoration: none !important;
+  color: var(--color-text) !important;
+  font-weight: 600 !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 13px !important;
+  padding: 6px 12px !important;
+  border-radius: 4px !important;
+  display: block !important;
+  text-align: left !important;
+}
+
+.exclusivo-wpp-header-dropdown a:hover {
+  background-color: var(--color-surface-muted) !important;
+  color: #128c7e !important;
+}
+
+/* Ajustes mobile exclusivos del Header */
+@media (max-width: 768px) {
+  .exclusivo-wpp-header-item {
+    margin: 12px 0 0 0 !important;
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .exclusivo-wpp-header-dropdown {
+    position: relative !important;
+    top: 8px !important;
+    left: 0 !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    background: var(--color-surface-muted) !important;
+    border: none !important;
+  }
+}
