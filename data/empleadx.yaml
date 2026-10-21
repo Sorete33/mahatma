@@ -1,6 +1,6 @@
 items:
   - detail: "Fabián Girotti"
-    badges: ["Medico General",]
+    badges: ["Médico General M.N 54428",]
     profile_image: "images/fabian.jpg"
 
   - detail: "Ana Balbo"
@@ -19,22 +19,22 @@ items:
     badges: ["Administración"]
     profile_image: "images/patri.jpg"
 
-  - detail: "Héctor Gomez"
+  - detail: "Héctor Gómez"
     badges: ["Mantenimiento",]
     profile_image: "images/tito.jpg"
 
   - detail: "Jessica Yancovich"
-    badges: ["Engargada Mahatma 1",]
+    badges: ["Encargada Mahatma 1",]
     profile_image: "images/yesi.png"
 
   - detail: "Karina Resquin"
-    badges: ["Encargada Mahatma 2 y 4",]
+    badges: ["Encargada Mahatma 2",]
     profile_image: "images/karina.jpg"
 
   - detail: "Gabriel Bartomeo"
     badges: ["Cantante",]
     profile_image: "images/barto.jpg"
   
-  - detail: "Sebastián Di Siervo"
+  - detail: "Sebastián Di Siervi"
     badges: ["Cantante",]
-    profile_image: ""
+    profile_image: "images/sebastian.jpeg"

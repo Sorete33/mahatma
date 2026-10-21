@@ -15,12 +15,23 @@
       <div class="hero-copy" style="overflow: hidden; width: 100%;"> 
         {{ with .name }}<span class="eyebrow">{{ . }}</span>{{ end }} 
         {{ with .title }}<h1>{{ . }}</h1>{{ end }} 
+ 
+        {{ if .destacados }} 
+          <div class="destacados-grid">
+            {{ range .destacados }}
+              <div class="destacado-card">
+                <span class="destacado-icon" aria-hidden="true"></span>
+                <p class="destacado-texto">{{ . }}</p>
+              </div>
+            {{ end }}
+          </div>
+        {{ end }}
          
         {{ if .highlights }} 
           <div class="servicios-institucionales-block">
             <details class="servicios-accordion">
               <summary class="servicios-summary-trigger">
-                <span class="summary-titulo">Nuestros Servicios</span>
+                <span class="summary-titulo">Todos Nuestros Servicios</span>
                 <span class="summary-flecha">▼</span>
               </summary>
               
@@ -63,6 +74,50 @@
     margin-bottom: 2rem;
   } 
 
+  /* Destacados institucionales */
+  .destacados-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 1.5rem 0;
+    width: 100%;
+  }
+
+  .destacado-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--color-surface);
+    padding: 16px 18px;
+    border-radius: 8px;
+    border: 1px solid rgba(88, 107, 81,0.15);
+    box-shadow: 0 4px 12px rgba(88, 107, 81, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .destacado-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(88, 107, 81, 0.12);
+  }
+
+  .destacado-icon {
+    flex: 0 0 auto;
+    align-self: stretch;
+    width: 4px;
+    min-height: 34px;
+    border-radius: 4px;
+    background-color: var(--color-primary);
+  }
+
+  .destacado-texto {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-text);
+    margin: 0;
+  }
+
   /* Contenedor del Acordeón */
   .servicios-institucionales-block {
     margin-top: 1.5rem;
@@ -83,7 +138,7 @@
     align-items: center;
     padding: 0.85rem 1.5rem;
     background-color: var(--color-surface-muted);
-    border: 1px solid rgba(125, 162, 169, 0.15);
+    border: 1px solid rgba(88, 107, 81,0.15);
     border-radius: 50px; /* Estilo píldora como tenías antes */
     transition: all 0.25s ease;
     list-style: none; /* Quita la flecha nativa del navegador */
@@ -95,12 +150,19 @@
   }
 
   .servicios-summary-trigger:hover {
-    background-color: var(--color-primary);
+    background-color: var(--color-pill);
   }
   
   .servicios-summary-trigger:hover .summary-titulo,
   .servicios-summary-trigger:hover .summary-flecha {
-    color: #ffffff !important;
+    color: var(--color-on-pill) !important;
+  }
+
+  /* Bordes con tinte oliva: en modo oscuro se cambian por salvia */
+  body[data-theme="dark"] .servicios-summary-trigger,
+  body[data-theme="dark"] .servicio-card-item,
+  body[data-theme="dark"] .destacado-card {
+    border-color: rgba(174, 192, 154, 0.22);
   }
 
   .summary-titulo {
@@ -147,15 +209,15 @@
     align-items: center;
     padding: 12px 14px 12px 18px;
     border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(107, 142, 155, 0.06);
-    border: 1px solid rgba(125, 162, 169, 0.1);
+    box-shadow: 0 4px 12px rgba(88, 107, 81, 0.06);
+    border: 1px solid rgba(88, 107, 81,0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     overflow: hidden;
   }
 
   .servicio-card-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(107, 142, 155, 0.12);
+    box-shadow: 0 6px 16px rgba(88, 107, 81, 0.12);
   }
 
   /* Barra de acento lateral */

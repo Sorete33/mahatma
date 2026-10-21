@@ -1,14 +1,13 @@
 institucional:
-  name: "Centros Geriátricos Mahatma Desde el 2011"
+  name: "Centros Geriátricos Mahatma desde el 2011"
   profile_image: "images/portrait.png"
   highlights:
-    - "Cobertura de enfermeria y medica las 24 horas."
+    - "Seguimiento médico a cargo del Dr. Fabián Girotti M.N 54428"
     - "Acompañamiento de psicomotricidad a cargo de la Lic. Mariela Cabral."
     - "Servicio de desayuno, almuerzo, merienda, colación y cena confeccionado por la Lic. en Nutrición Ana Balbo."
     - "Supervisión en área de cocina por Técnico en Alimentación Renzo Guasco."
-    - "Música en vivo con los artistas Gabriel Bartomeo y Sebastián Di Siervo"
+    - "Música en vivo con los artistas Gabriel Bartomeo y Sebastián Di Siervi"
     - "Sistema de recolección de residuos patológicos a cargo de la empresa Habitat."
-    - "Cobertura de asistencia en urgencias de Grupo I.E."
     - "Servicio de oxigenoterapia. Convertidor de oxígeno y tubos de oxigeno"
     - "Servicio de peluquería y pedicuría."
     - "Habitaciónes individuales y compartidas."
@@ -25,6 +24,12 @@ institucional:
     - "Cámaras de seguridad."
     - "Servicio de Wi – Fi."
     - "Generador eléctrico."
+
+  destacados:
+    - "Enfermería 24/7."
+    - "Atención Médica Integral."
+    - "Cobertura de asistencia en urgencias de Grupo I.E."
+    - "Accesibilidad: rampas y elevador hidráulico."
 
   links:
     - label: "Instagram"

@@ -1,0 +1,187 @@
+{{- $items := .items -}}
+{{- $limit := or .limit (len $items) -}}
+
+<style>
+  /* Modales nativos: comportamiento fluido en móvil */
+  .native-modal {
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow: auto;
+    overscroll-behavior: contain;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .native-modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+  }
+
+  .modal-nav-btn {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 1rem;
+  }
+</style>
+
+<div class="collapsible" data-expandable data-limit="{{ $limit }}">
+  <div class="expandable-grid" data-expandable-content>
+    {{ range $items }}
+      <article class="expandable-card">
+        {{ $img := strings.TrimPrefix "/" .image }}
+        <div class="card-image">
+          <img src="{{ $img | relURL }}" alt="{{ .title }} thumbnail" loading="lazy">
+        </div>
+        <div class="card-content">
+          {{ with .meta }}<p class="card-meta">{{ . }}</p>{{ end }}
+          <h3>{{ .title }}</h3>
+          {{ with .summary }}<p class="card-summary">{{ . }}</p>{{ end }}
+          {{ if .map }}
+           <div class="card-map" style="margin: 10px 0; width: 100%; box-sizing: border-box;">
+             {{ .map | safeHTML }}
+          </div>
+          {{ end }}
+          {{ $coLabel := or .coauthors_label .coauthorsLabel "Co-authors" }}
+          {{ with .coauthors }}
+            <p class="card-coauthors">
+              <span class="label">{{ $coLabel }}:</span>
+              <span class="coauthor-list">
+                {{ range $index, $co := . }}
+                  {{ if gt $index 0 }}, {{ end }}
+                  {{ $name := $co.name | default $co.title | default $co.label }}
+                  {{ $link := or $co.url $co.link }}
+                  {{ if $link }}
+                    {{ if and (hasPrefix $link "/") (not (hasPrefix $link "//")) }}
+                      <a class="coauthor-link" href="{{ $link | relURL }}">{{ $name }}</a>
+                    {{ else }}
+                      <a class="coauthor-link" href="{{ $link | safeURL }}" target="_blank" rel="noopener">{{ $name }}</a>
+                    {{ end }}
+                  {{ else }}
+                    <span class="coauthor-name">{{ $name }}</span>
+                  {{ end }}
+                {{ end }}
+              </span>
+            </p>
+          {{ end }}
+
+          {{ with .tags }}
+            <div class="tag-row">
+              {{ range . }}
+                <span class="tag">{{ . }}</span>
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+
+        <div class="card-footer">
+          {{ $item := . }}
+
+          {{ range .links }}
+            {{ $dest := or .link .url }}
+
+            {{ if eq .label "Fotos" }}
+              <a class="chip-link" 
+                 href="#" 
+                 style="cursor: pointer;"
+                 data-modal-trigger="modal-{{ $item.title | urlize }}">
+                {{ .label }}
+              </a>
+
+              <dialog id="modal-{{ $item.title | urlize }}" class="native-modal">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid var(--color-surface-muted); padding-bottom:5px;">
+                  <h4 style="margin:0; color:var(--color-text);">{{ $item.title }}</h4>
+                  <button type="button" onclick="this.closest('dialog').close()" style="background:none; border:none; font-size:20px; cursor:pointer; color:inherit;">&times;</button>
+                </div>
+
+                <div class="modal-carousel" style="position:relative; text-align:center;">
+                  {{ if $item.gallery }}
+                    {{ range $index, $imgUrl := $item.gallery }}
+                      <div class="slide-{{ $item.title | urlize }}" data-index="{{ $index }}" style="{{ if gt $index 0 }}display:none;{{ end }}">
+                        <img src="{{ $imgUrl | relURL }}" alt="{{ $item.title }} - foto {{ add $index 1 }} de {{ len $item.gallery }}" style="max-width:100%; max-height:350px; object-fit:contain; border-radius:4px;">
+                        <p style="font-size:12px; margin-top:5px; color:var(--color-muted);">{{ add $index 1 }} / {{ len $item.gallery }}</p>
+                      </div>
+                    {{ end }}
+
+                    <div style="display:flex; justify-content: space-between; margin-top:10px;">
+                      <button type="button" onclick="changeSlide('{{ $item.title | urlize }}', -1)" class="modal-nav-btn" style="padding:5px 15px; cursor:pointer; background:var(--color-surface-muted); border:1px solid var(--color-surface-muted); border-radius:4px; color:var(--color-text); font-family: inherit; font-weight: 500;">&larr; Ant</button>
+                      <button type="button" onclick="changeSlide('{{ $item.title | urlize }}', 1)" class="modal-nav-btn" style="padding:5px 15px; cursor:pointer; background:var(--color-surface-muted); border:1px solid var(--color-surface-muted); border-radius:4px; color:var(--color-text); font-family: inherit; font-weight: 500;">Sig &rarr;</button>
+                    </div>
+                  {{ else }}
+                    <div>
+                      <img src="{{ $item.image | relURL }}" alt="{{ $item.title }}" style="max-width:100%; max-height:350px; object-fit:contain; border-radius:4px;">
+                    </div>
+                  {{ end }}
+                </div>
+              </dialog>
+
+            {{ else }}
+              {{ if and (hasPrefix $dest "/") (not (hasPrefix $dest "//")) }}
+                <a class="chip-link" href="{{ $dest | relURL }}">{{ .label }}</a>
+              {{ else }}
+                <a class="chip-link" href="{{ $dest | safeURL }}" target="_blank" rel="noopener">{{ .label }}</a>
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        </div>
+      </article>
+    {{ end }}
+  </div>
+
+  {{ if gt (len $items) $limit }}
+    <button class="ghost-toggle" type="button" data-expand-toggle>Show More ↓</button>
+  {{ end }}
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+  const trigger = e.target.closest('[data-modal-trigger]');
+  if (trigger) {
+    e.preventDefault();
+    const id = trigger.getAttribute('data-modal-trigger');
+    const modal = document.getElementById(id);
+    if (!modal) return;
+
+    if (typeof modal.showModal === 'function') {
+      modal.showModal();
+    } else {
+      // Fallback para navegadores sin soporte de showModal()
+      modal.setAttribute('open', '');
+    }
+  }
+
+  // Cerrar el modal al tocar fuera del contenido (backdrop)
+  const dialog = e.target && e.target.closest ? e.target.closest('dialog.native-modal') : null;
+  if (dialog) {
+    const rect = dialog.getBoundingClientRect();
+    const clickedInside = (
+      e.clientX >= rect.left && e.clientX <= rect.right &&
+      e.clientY >= rect.top && e.clientY <= rect.bottom
+    );
+    if (!clickedInside) dialog.close();
+  }
+});
+
+function changeSlide(id, direction) {
+  const slides = document.querySelectorAll('.slide-' + id);
+  let activeIndex = 0;
+  
+  slides.forEach((slide, idx) => {
+    if (slide.style.display !== 'none') {
+      activeIndex = idx;
+    }
+  });
+  
+  slides[activeIndex].style.display = 'none';
+  
+  let newIndex = activeIndex + direction;
+  if (newIndex >= slides.length) newIndex = 0;
+  if (newIndex < 0) newIndex = slides.length - 1;
+  
+  slides[newIndex].style.display = 'block';
+}
+</script>

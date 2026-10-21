@@ -1,49 +1,110 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "NursingHome",
-  "name": "Centros Geriátricos Mahatma",
-  "url": "https://centrosgeriatricosmahatma.com.arhttps://centrosgeriatricosmahatma.com.ar",
-  "logo": "https://voluble-centaur-8d5080.netlify.app/images/logo.png",
-  "address": [
+  "@graph": [
     {
-      "@type": "PostalAddress",
-      "streetAddress": "Avenida Francisco Laborde 165",
-      "addressLocality": "Chivilcoy",
-      "addressRegion": "Buenos Aires",
-      "postalCode": "6620",
-      "addressCountry": "AR"
+      "@type": "Organization",
+      "@id": "https://centrosgeriatricosmahatma.com.ar/#organization",
+      "name": "Centros Geriátricos Mahatma",
+      "url": "https://centrosgeriatricosmahatma.com.ar",
+      "logo": "https://centrosgeriatricosmahatma.com.ar/apple-touch-icon.png",
+      "email": "geriatricosmahatma@gmail.com",
+      "telephone": ["+542346331020", "+542346688161", "+542346503834"],
+      "sameAs": [
+        "https://www.instagram.com/geriatricosmahatma/",
+        "https://www.facebook.com/hugo.guasco/"
+      ]
     },
     {
-      "@type": "PostalAddress",
-      "streetAddress": "Pintos 411",
-      "addressLocality": "Chivilcoy",
-      "addressRegion": "Buenos Aires",
-      "postalCode": "6620",
-      "addressCountry": "AR"
+      "@type": ["NursingHome", "LocalBusiness"],
+      "@id": "https://centrosgeriatricosmahatma.com.ar/#mahatma-1",
+      "name": "Centros Geriátricos Mahatma 1",
+      "url": "https://centrosgeriatricosmahatma.com.ar/#mahatma-1",
+      "parentOrganization": { "@id": "https://centrosgeriatricosmahatma.com.ar/#organization" },
+      "image": "https://centrosgeriatricosmahatma.com.ar/images/m1.jpg",
+      "telephone": "+542346331020",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avenida Francisco Laborde 165",
+        "addressLocality": "Chivilcoy",
+        "addressRegion": "Buenos Aires",
+        "postalCode": "6620",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -34.901149891396244,
+        "longitude": -60.012156153089336
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ]
     },
     {
-      "@type": "PostalAddress",
-      "streetAddress": "Alvear 125",
-      "addressLocality": "Chivilcoy",
-      "addressRegion": "Buenos Aires",
-      "postalCode": "6620",
-      "addressCountry": "AR"
-    }
-  ],
-  "telephone": ["+542346331020", "+542346688161", "+542346503834"],
-  "openingHoursSpecification": [
+      "@type": ["NursingHome", "LocalBusiness"],
+      "@id": "https://centrosgeriatricosmahatma.com.ar/#mahatma-2",
+      "name": "Centros Geriátricos Mahatma 2",
+      "url": "https://centrosgeriatricosmahatma.com.ar/#mahatma-2",
+      "parentOrganization": { "@id": "https://centrosgeriatricosmahatma.com.ar/#organization" },
+      "image": "https://centrosgeriatricosmahatma.com.ar/images/m2.jpg",
+      "telephone": "+542346688161",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Pintos 411",
+        "addressLocality": "Chivilcoy",
+        "addressRegion": "Buenos Aires",
+        "postalCode": "6620",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -34.9051304,
+        "longitude": -60.0248893064209
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ]
+    },
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "opens": "00:00",
-      "closes": "23:59"
+      "@type": ["NursingHome", "LocalBusiness"],
+      "@id": "https://centrosgeriatricosmahatma.com.ar/#mahatma-3",
+      "name": "Centros Geriátricos Mahatma 3",
+      "url": "https://centrosgeriatricosmahatma.com.ar/#mahatma-3",
+      "parentOrganization": { "@id": "https://centrosgeriatricosmahatma.com.ar/#organization" },
+      "image": "https://centrosgeriatricosmahatma.com.ar/images/m3.jpg",
+      "telephone": "+542346503834",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Alvear 125",
+        "addressLocality": "Chivilcoy",
+        "addressRegion": "Buenos Aires",
+        "postalCode": "6620",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -34.89716957285053,
+        "longitude": -60.0180960235997
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ]
     }
-  ],
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "-34.8967", 
-    "longitude": "-60.0166"
-  }
+  ]
 }
 </script>

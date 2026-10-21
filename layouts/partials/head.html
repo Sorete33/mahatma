@@ -1,0 +1,202 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- $seoTitle := site.Params.seo_title | default site.Title -}}
+<title>{{ if .IsHome }}{{ $seoTitle }}{{ else }}{{ printf "%s | %s" .Title $seoTitle }}{{ end }}</title>
+{{ with site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+
+<meta name="theme-color" content="#FAF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1714" media="(prefers-color-scheme: dark)">
+
+{{/* SEO: canonical + Open Graph + Twitter Card */}}
+{{- $pageTitle := $seoTitle -}}
+{{- if not .IsHome -}}{{- $pageTitle = printf "%s | %s" .Title $seoTitle -}}{{- end -}}
+{{- $pageDesc := site.Params.description -}}
+{{- $pageImage := "images/m1.jpg" | absURL -}}
+<link rel="canonical" href="{{ .Permalink }}">
+<meta property="og:site_name" content="Centros Geriátricos Mahatma">
+<meta property="og:title" content="{{ $pageTitle }}">
+<meta property="og:description" content="{{ $pageDesc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="website">
+<meta property="og:image" content="{{ $pageImage }}">
+<meta property="og:image:alt" content="Centros Geriátricos Mahatma en Chivilcoy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $pageTitle }}">
+<meta name="twitter:description" content="{{ $pageDesc }}">
+<meta name="twitter:image" content="{{ $pageImage }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="{{ "favicon-32x32.png" | relURL }}" sizes="32x32">
+<link rel="icon" type="image/png" href="{{ "favicon-16x16.png" | relURL }}" sizes="16x16">
+<link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
+<link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+{{ $css := resources.Get "css/main.css" }}
+{{ if $css }}
+  {{ $css := $css | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ else }}
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+{{ end }}
+
+<link rel="stylesheet" href="{{ "vendor/katex/katex.min.css" | absURL }}">
+<script defer src="{{ "vendor/katex/katex.min.js" | absURL }}"></script>
+<script defer src="{{ "vendor/katex/auto-render.min.js" | absURL }}"></script>
+
+<style>
+  /* Header responsive:
+     ≤767px  → menú hamburguesa
+     ≥768px  → nav de escritorio siempre en una sola línea
+  */
+
+  /* Escritorio (desde 768px) */
+  @media (min-width: 768px) {
+    .morandi-nav {
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .morandi-nav .menu-toggle {
+      display: none;
+    }
+
+    .morandi-nav .nav-links {
+      display: flex !important;
+      position: static;
+      top: auto;
+      left: auto;
+      right: auto;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: nowrap;
+      gap: 1.5rem;
+      width: auto;
+      max-width: none;
+      margin-left: auto;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      z-index: auto;
+    }
+
+    .brand a {
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  /* Tablet: el header completo en una sola línea */
+  @media (min-width: 768px) and (max-width: 960px) {
+    body .morandi-nav {
+      padding-left: 14px !important;
+      padding-right: 14px !important;
+    }
+
+    .brand {
+      font-size: 0.9rem;
+    }
+
+    .morandi-nav .nav-links {
+      gap: 1rem;
+    }
+
+    /* Mantiene la imagen del hero en un tamaño razonable (2 columnas) */
+    .hero {
+      grid-template-columns: 240px 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  /* Móvil (hasta 767px) */
+  @media (max-width: 767px) {
+    body .morandi-nav {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+
+    .morandi-nav {
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      min-width: 0;
+      font-size: 0.9rem;
+    }
+
+    .brand a {
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .morandi-nav .menu-toggle {
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .morandi-nav .nav-links {
+      display: none !important;
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: auto;
+      right: 0;
+      width: max-content;
+      max-width: calc(100% - 1rem);
+      background: var(--color-surface);
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      gap: 0;
+      margin-left: 0;
+      padding: 1rem 1.25rem;
+      border-radius: 14px;
+      box-shadow: var(--shadow-soft);
+      z-index: 99;
+    }
+
+    .morandi-nav .nav-links.is-open {
+      display: flex !important;
+    }
+
+    .nav-links a {
+      text-align: right;
+    }
+
+    .nav-links .theme-toggle {
+      align-self: flex-end;
+    }
+
+    /* La imagen del hero no debe ocupar todo el ancho en móvil */
+    .hero-media-img {
+      max-width: 280px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .hero-media-img {
+      max-width: 210px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .brand {
+      font-size: 0.82rem;
+    }
+  }
+</style>
