@@ -32,6 +32,31 @@
 })();
 
 (function () {
+  // El botón #scroll-top se declara después de este partial, por eso esperamos al DOM.
+  const init = () => {
+    const btn = document.getElementById("scroll-top");
+    if (!btn) return;
+
+    const onScroll = () => {
+      btn.classList.toggle("show-scroll", window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    onScroll();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
+(function () {
   const wrappers = Array.from(document.querySelectorAll("[data-expandable]"));
   if (!wrappers.length) return;
 

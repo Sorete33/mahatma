@@ -347,6 +347,8 @@ body[data-theme="dark"] .morandi-nav {
 .section-heading .bar {
   width: 5px;
   height: 34px;
+  flex: 0 0 auto;
+  margin: 0; /* Nunca heredar los márgenes del heading (evita descentrados) */
   border-radius: 12px;
   background: var(--color-primary);
   display: inline-block;
@@ -1192,8 +1194,8 @@ body[data-theme="dark"] .tag {
 
 #scroll-top {
   position: fixed;
-  right: 2rem;
-  bottom: 2rem;
+  right: max(20px, calc((100% - 1100px) / 2 + 20px));
+  bottom: 100px; /* Apilado por encima del botón de WhatsApp */
   width: 40px;
   height: 40px;
   border: none;
@@ -1983,7 +1985,8 @@ body[data-theme="dark"] .glightbox-clean .gslide-desc {
 .wpp-floating-container {
   position: fixed !important;
   bottom: 30px !important;
-  right: 30px !important;
+  /* Anclado al margen derecho del contenido, no al borde de la pantalla */
+  right: max(20px, calc((100% - 1100px) / 2 + 20px)) !important;
   z-index: 2147483647 !important;
   display: block;
   transform: translateZ(0) !important; /* Force hardware acceleration to prevent jump on scroll */
